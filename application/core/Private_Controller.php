@@ -25,6 +25,11 @@ class Private_Controller extends Site_Controller
                 unset_session_data();
                 $this->session->set_flashdata('error', 'Login was disabled by an administrator.');
                 redirect('login');
+            }elseif(Settings_model::$db_config['disable_all'] == 1) {
+                $this->load->helper('session');
+                unset_session_data();
+                $this->session->set_flashdata('error', 'Site access was disabled by an administrator.');
+                redirect('login');
             }
         }
 
