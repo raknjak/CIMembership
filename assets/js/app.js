@@ -37,7 +37,7 @@ var waitForFinalEvent = (function() {
 
 
 		// --> LocalStorage checks
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		// check localStorage for aside
 		if (typeof localStorage !== 'undefined' && localStorage !== null) {
 			if (localStorage.getItem("asideNarrow") == "yep") {
@@ -61,7 +61,7 @@ var waitForFinalEvent = (function() {
 
 
 		// narrow menu trigger
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		$narrowTrigger.on("click", function() {
 
 			var $_this = $(this);
@@ -92,7 +92,7 @@ var waitForFinalEvent = (function() {
 		});
 
 		// hidden menu trigger
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		$hiddenTrigger.on("click", function() {
 
 			var $_this = $(this);
@@ -120,7 +120,7 @@ var waitForFinalEvent = (function() {
 
 
 		// extramenu trigger
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		$extraMenuTrigger.on("click", function() {
 			if ($extraMenu.hasClass("shown")) {
 				$("#extramenu-content").hide();
@@ -152,7 +152,7 @@ var waitForFinalEvent = (function() {
 
 
 		// change triggers depending on screen width (used below)
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		function hiddenOnBreakPoint() {
 			//console.log($(window).width());
 			if ($('body').width() < $breakPoint) {
@@ -185,7 +185,7 @@ var waitForFinalEvent = (function() {
 
 
 		// resize verification with hammer protection
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		$(window).on('resize', function() {
 			waitForFinalEvent(function() {
 				//console.log("resize");
@@ -195,7 +195,7 @@ var waitForFinalEvent = (function() {
 
 
 		// launch the navigation menu (custom Navgoco version)
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		if ($navWrap.length > 0) {
 			$navWrap.navgoco({
 				caretClassCollapsed: 'fa fa-angle-down',
@@ -217,26 +217,23 @@ var waitForFinalEvent = (function() {
 
 
 		// tab menu switch control for sidebar (generic: add/remove menu tabs as you please)
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		$infoContentSelector.on('show.bs.tab', function (e) {
-			$infoContentSelector.removeClass('active in'); // remove all active and in classes from them tabs
-			$(this).addClass('active in'); // set the current tab active
-
+      $infoContentSelector.removeClass('active in'); // remove all active and in classes from them tabs
+      $(this).addClass('active in'); // set the current tab active
 			localStorage.setItem("js-aside-info-active-tab", $(this).attr('id'));
 		});
 
 		if (typeof localStorage !== 'undefined' && localStorage !== null) {
 			$infoContentSelector.removeClass('active in');
 			$("#" + localStorage.getItem("js-aside-info-active-tab")).addClass('active in');
-
 			$infoContent.find(".tab-pane.active").removeClass('active in');
-
 			$infoContent.find(".tab-pane." + localStorage.getItem("js-aside-info-active-tab")).addClass('active in');
 		}
 
 
 		// select all functionality for manipulating multiple items at one go
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		$(".js-select-all-members").on('change', function() {
 			var c = this.checked;
 			$(':checkbox').prop('checked',c);
@@ -248,7 +245,7 @@ var waitForFinalEvent = (function() {
 
 
 		// launch the Slimscroll plugin for dropdowns
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		if ($('.scroll').length > 0) {
 			$('.scroll').slimscroll(
 				{
@@ -264,9 +261,8 @@ var waitForFinalEvent = (function() {
 
 
 		// Adminpanel bootbox
-        // -------------------------------------------------------------------------------------------------------------
-
-        // Alerts when clicking buttons on list members page
+    // -----------------------------------------------------------------------------------------------------------------
+    // Alerts when clicking buttons on list members page
 		var myBootbox = function($target) {
 			$($target).click(function() {
 				$("input[type=submit]", $(this).parents("form")).removeAttr("clicked");
@@ -291,45 +287,43 @@ var waitForFinalEvent = (function() {
 
 
 		// Parsley frontend validation
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		var parsleyFactory = function($form, $button) {
 			var $parsley = $form.parsley();
 
 			$button.on('click', function(evt) {
 
 				if ($parsley.isValid()) {
-
 					$parsley.destroy();
 					$form.submit();
-
 					$(this).button('loading');
 				}else{
 					$(this).button("reset");
 				}
-                if (typeof(tinyMCE) != "undefined") {
-                    tinyMCE.triggerSave();
-                }
+        if (typeof(tinyMCE) !== "undefined") {
+            tinyMCE.triggerSave();
+        }
 			});
 		};
 
-		// Parsley generic form
+        // Parsley generic form
         $(".js-parsley").each(function(i, obj) {
-            var $form = $(this);
-            if ($form.length) {
-                parsleyFactory( $form, $("." + $form.data('parsley-submit')) );
-            }
+          var $form = $(this);
+          if ($form.length) {
+            parsleyFactory( $form, $("." + $form.data('parsley-submit')) );
+          }
         });
 
         // ---
         // custom validation rules with AJAX
         window.Parsley.addAsyncValidator('parsley_is_db_cell_available', function (xhr) {
-            var response = xhr.responseText;
-            var t = this.$element.attr('name');
-            if (response === 'valid') {
-                return true;
-            } else {
-                return false;
-            }
+          var response = xhr.responseText;
+          var t = this.$element.attr('name');
+          if (response === 'valid') {
+              return true;
+          } else {
+              return false;
+          }
         }, CONFIG.base_url + 'utils/parsley_custom_validation/parsley_is_db_cell_available');
 
 
@@ -340,14 +334,14 @@ var waitForFinalEvent = (function() {
         $csrf_token_name[key] = CONFIG.csrf_cookie_name;
 
 		// profile picture upload
-		// -------------------------------------------------------------------------------------------------------------
-        var $fileUpload = $('#fileupload');
-        var acceptFileTypes = /^image\/(jpe?g|png)$/i;
+		// -----------------------------------------------------------------------------------------------------------------
+    var $fileUpload = $('#fileupload');
+    var acceptFileTypes = /^image\/(jpe?g|png)$/i;
 
 
-        if ($fileUpload.length) {
-            $fileUpload.fileupload({
-                dropZone: $('#dropzone'),
+    if ($fileUpload.length) {
+      $fileUpload.fileupload({
+        dropZone: $('#dropzone'),
 				url: CONFIG.base_url + $fileUpload.attr("data-path"),
 				dataType: 'json',
 				disableImageResize: /Android(?!.*Chrome)|Opera/.test(window.navigator.userAgent),
@@ -378,7 +372,7 @@ var waitForFinalEvent = (function() {
 				done: function (e, data) {
 					$.each(data.result.files, function (index, file) {
 						var $output = '';
-						if (file.error != 0) {
+						if (file.error !== 0) {
 							$output = file.error;
 						}
 						var d = new Date();
@@ -389,10 +383,9 @@ var waitForFinalEvent = (function() {
 						$('#files').text($output);
 					});
 
-                   // CONFIG.csrf_cookie_name = data.result.csrfHash;
-                    CONFIG.csrf_cookie_name = data.result.csrfHash;
-                    $csrf_token_name[key] = data.result.csrfHash;
-                    $('body').find('input[name=csrf_token_name]').val(CONFIG.csrf_cookie_name);
+          CONFIG.csrf_cookie_name = data.result.csrfHash;
+          $csrf_token_name[key] = data.result.csrfHash;
+          $('body').find('input[name=csrf_token_name]').val(CONFIG.csrf_cookie_name);
 				},
 				progressall: function (e, data) {
 					var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -408,13 +401,13 @@ var waitForFinalEvent = (function() {
 				.parent().addClass($.support.fileInput ? undefined : 'disabled');
 		}
 
-        $fileUpload.on('click', function(){
+    $fileUpload.on('click', function(){
 			$("#files").text('');
 		});
 
 
 		// adminpanel text on search button -> list members page
-		// -------------------------------------------------------------------------------------------------------------
+		// -----------------------------------------------------------------------------------------------------------------
 		$("#js-search").on('click', function() {
 			if ($("#search_wrapper").hasClass("in")) {
 				$("#js-search-text").html('<i class="fa fa-expand pd-r-5"></i> ' + LANG.search_expand);
@@ -425,7 +418,7 @@ var waitForFinalEvent = (function() {
 
 
 		// confirm delete
-        // -------------------------------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 		$(".js-confirm-delete").on('click', function(){
 			if(confirm(LANG.confirm_delete)) {
 				$(this).button('loading');
@@ -435,114 +428,115 @@ var waitForFinalEvent = (function() {
 			}
 		});
 
-        // add member username from email
-        // -------------------------------------------------------------------------------------------------------------
-        $('.js-username-from-email').on('change', function () {
-            var $target = $('.js-username-from-email-target');
-            //var $_this = $(this);
-            if (($target).is(":visible")) {
-                $("#username").removeAttr('data-parsley-required');
-                $target.hide();
-            }else{
-                $("#username").attr('data-parsley-required', '');
-                $target.show();
+    // add member username from email
+    // -----------------------------------------------------------------------------------------------------------------
+    $('.js-username-from-email').on('change', function () {
+      var $target = $('.js-username-from-email-target');
+      //var $_this = $(this);
+      if (($target).is(":visible")) {
+        $("#username").removeAttr('data-parsley-required');
+        $target.hide();
+      }else{
+        $("#username").attr('data-parsley-required', '');
+        $target.show();
+      }
+    });
+
+
+    // site settings remember tab state, allow passing of url with tab id in location.hash
+    // -----------------------------------------------------------------------------------------------------------------
+    if (location.hash) {
+      $("a[href='" + location.hash + "']").tab("show");
+    }
+    $(document.body).on("click", ".nav-tabs a[data-toggle]", function(evt) {
+      location.hash = this.getAttribute("href");
+      localStorage.setItem('lastTab', $(this).attr('href'));
+    });
+
+    // go to the latest tab, if it exists:
+    var lastTab = localStorage.getItem('lastTab');
+    if (lastTab) {
+      $('.nav-tabs a[href="' + lastTab + '"]').tab('show');
+    }
+
+
+    // Alerts when clicking on member detail - view username history
+    // -----------------------------------------------------------------------------------------------------------------
+    $(".js-username-history").on("click", function(evt) {
+
+      var $userId = $(this).data('userid');
+
+      /*var $data = {}; // also useful like this
+      $data[CONFIG.csrf_token_name] = CONFIG.csrf_cookie_name;*/
+
+      $.ajax({
+        method: 'POST',
+        url: CONFIG.base_url + 'adminpanel/member_detail/get_username_history/' + $userId,
+        dataType: 'json',
+        data: $csrf_token_name
+      }).done(function(result) {
+
+        var $endResult = [];
+
+        $.each(result.resultData, function (i, args) {
+            $endResult.push(args.username + '<br>');
+        });
+
+        bootbox.dialog({
+            message: $endResult,
+            title: "Username history",
+            buttons: {
+                success: {
+                    label: "Close",
+                    className: "btn-success"
+                }
             }
         });
 
+        // refresh CSRF token
+        CONFIG.csrf_cookie_name = result.csrfHash;
+        $csrf_token_name[key] = result.csrfHash;
 
-        // site settings remember tab state, allow passing of url with tab id in location.hash
-        // -------------------------------------------------------------------------------------------------------------
-        if (location.hash) {
-            $("a[href='" + location.hash + "']").tab("show");
-        }
-        $(document.body).on("click", ".nav-tabs a[data-toggle]", function(evt) {
-            location.hash = this.getAttribute("href");
-            localStorage.setItem('lastTab', $(this).attr('href'));
-        });
-
-        // go to the latest tab, if it exists:
-        var lastTab = localStorage.getItem('lastTab');
-        if (lastTab) {
-            $('.nav-tabs a[href="' + lastTab + '"]').tab('show');
-        }
+      }).fail(function( jqXHR, textStatus ) {
+        console.log(textStatus);
+      });
+    });
 
 
-        // Alerts when clicking on member detail - view username history
-        // -------------------------------------------------------------------------------------------------------------
-        $(".js-username-history").on("click", function(evt) {
-
-            var $userId = $(this).data('userid');
-
-            /*var $data = {};
-            $data[CONFIG.csrf_token_name] = CONFIG.csrf_cookie_name;*/
-
-            $.ajax({
-                method: 'POST',
-                url: CONFIG.base_url + 'adminpanel/member_detail/get_username_history/' + $userId,
-                dataType: 'json',
-                data: $csrf_token_name
-            }).done(function(result) {
-
-                var $endResult = [];
-
-                $.each(result.resultData, function (i, args) {
-                    $endResult.push(args.username + '<br>');
-                });
-
-                bootbox.dialog({
-                    message: $endResult,
-                    title: "Username history",
-                    buttons: {
-                        success: {
-                            label: "Close",
-                            className: "btn-success"
-                        }
-                    }
-                });
-
-                // refresh CSRF token
-                CONFIG.csrf_cookie_name = result.csrfHash;
-                $csrf_token_name[key] = result.csrfHash;
-
-            }).fail(function( jqXHR, textStatus ) {
-                console.log(textStatus);
-            });
-        });
+    // prevent member dropdown from closing on click
+    // -----------------------------------------------------------------------------------------------------------------
+    $('.dropdown-menu-member').on('click', function(e) {
+      e.stopPropagation();
+    });
 
 
-        // prevent member dropdown from closing on click
-        // -------------------------------------------------------------------------------------------------------------
-        $('.dropdown-menu-member').on('click', function(e) {
-            e.stopPropagation();
-        });
+    // catch CSRF timeout - JS page refresher
+    // -----------------------------------------------------------------------------------------------------------------
+    // value must be same as $config['csrf_expire'] = 7200; in config.php
+    // DISABLED FOR NOW: could be annoying or inconvenient to some
+    /*setInterval(function () {
+      if(alert('Your session has expired - click ok to continue')){
+      }else{
+          window.location.reload();
+      }
+    }, (CONFIG.csrf_expire * 1000) - 3000); // * 1000 to get seconds to miliseconds; subtract a few seconds to make sure we refresh BEFORE the session expires */
 
 
-        // catch CSRF timeout - JS page refresher
-        // -------------------------------------------------------------------------------------------------------------
-        // value must be same as $config['csrf_expire'] = 7200; in config.php
-        // DISABLED FOR NOW: could be annoying or inconvenient to some
-        /*setInterval(function () {
-            if(alert('Your session has expired - click ok to continue')){
-            }else{
-                window.location.reload();
-            }
-        }, (CONFIG.csrf_expire * 1000) - 3000); // * 1000 to get seconds to miliseconds; subtract a few seconds to make sure we refresh BEFORE the session expires */
-
-        // let's show our hidden body after everything is done
-        var $pageContainer = $('body');
-        $pageContainer.css('display', 'none');
-        $pageContainer.css('visibility', 'inherit');
-        $pageContainer.fadeIn(400);
-        $pageContainer.removeClass("notransition");
+    // let's show our hidden body after everything is done
+    // -----------------------------------------------------------------------------------------------------------------
+    var $pageContainer = $('body');
+    $pageContainer.css('display', 'none');
+    $pageContainer.css('visibility', 'inherit');
+    $pageContainer.fadeIn(400);
+    $pageContainer.removeClass("notransition");
 
 
-
-        // workaround for removing #_-_ from url during Facebook authentication
-        if (window.location.hash == '#_=_') {
-            window.location.hash = ''; // for older browsers, leaves a # behind
-            history.pushState('', document.title, window.location.pathname); // nice and clean
-           // e.preventDefault(); // no page reload
-        }
+    // workaround for removing #_-_ from url during Facebook authentication
+    // -----------------------------------------------------------------------------------------------------------------
+    if (window.location.hash == '#_=_') {
+      window.location.hash = ''; // for older browsers, leaves a # behind
+      history.pushState('', document.title, window.location.pathname); // nice and clean
+    }
 
 	});
 
