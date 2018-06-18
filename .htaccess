@@ -1,0 +1,30 @@
+Options +FollowSymLinks -Indexes
+RewriteEngine on
+
+# ######################################################################
+# → Redirect to non-www. Example shows how to use with sub folder.
+#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#RewriteRule ^(.*)$ http://%1/dev/cim3/$1 [R=301,L]
+
+# ######################################################################
+# → Forcing `https://`
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}/dev/cim3/$1 [R=301,L]
+
+# ######################################################################
+# → Internally route to /index.php
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+
+# ######################################################################
+# → Google web fonts
+<IfModule mod_mime.c>
+    AddType application/vnd.ms-fontobject    .eot
+    AddType application/x-font-opentype      .otf
+    AddType image/svg+xml                    .svg
+    AddType application/x-font-ttf           .ttf
+    AddType application/font-woff            .woff
+    AddType application/font-woff2           .woff2
+</IfModule>
