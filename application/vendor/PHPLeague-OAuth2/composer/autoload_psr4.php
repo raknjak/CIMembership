@@ -12,5 +12,6 @@ return array(
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
+    'Depotwarehouse\\OAuth2\\Client\\Twitch\\' => array($vendorDir . '/depotwarehouse/oauth2-twitch/src'),
     'AdamPaterson\\OAuth2\\Client\\' => array($vendorDir . '/adam-paterson/oauth2-stripe/src'),
 );

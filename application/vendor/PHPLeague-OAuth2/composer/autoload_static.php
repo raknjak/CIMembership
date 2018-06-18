@@ -32,6 +32,10 @@ class ComposerStaticInit669b78ab9ace86bb64fe5c32899c5b28
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'D' => 
+        array (
+            'Depotwarehouse\\OAuth2\\Client\\Twitch\\' => 36,
+        ),
         'A' => 
         array (
             'AdamPaterson\\OAuth2\\Client\\' => 27,
@@ -67,6 +71,10 @@ class ComposerStaticInit669b78ab9ace86bb64fe5c32899c5b28
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Depotwarehouse\\OAuth2\\Client\\Twitch\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/depotwarehouse/oauth2-twitch/src',
         ),
         'AdamPaterson\\OAuth2\\Client\\' => 
         array (
