@@ -54,12 +54,12 @@ class Retrieve_username extends Auth_Controller {
             $this->email->subject($this->lang->line('forgot_username_subject'));
 
             $this->email->message(
-                $this->load->view('generic/email_templates/header.php', array('new_username' => $data['username']), true) .
+                $this->load->view('generic/email_templates/header.php', array('username' => $data['username']), true) .
                 $this->load->view('themes/bootstrap3/email_templates/retrieve-username.php', array('username' => $data['username']), true) .
                 $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
             );
             $this->email->set_alt_message(
-                $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $data['username']), true) .
+                $this->load->view('generic/email_templates/header-txt.php', array('username' => $data['username']), true) .
                 $this->load->view('themes/bootstrap3/email_templates/retrieve-username-txt.php', array('username' => $data['username']), true) .
                 $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
             );

@@ -46,17 +46,15 @@ class Login_model extends CI_Model {
             $this->db->join(DB_PREFIX .'user_cookie_part ucp', 'u.user_id = ucp.user_id')
                 ->where('u.email', $oauth_email);
         }else{
-            $this->db->where('username', $identification);
+            $this->db->where('u.username', $identification);
             if ($emailAllowed) {
-                $this->db->or_where('email', $identification);
+                $this->db->or_where('u.email', $identification);
             }
         }
 
-        $q = $this->db->get();
-
         $this->db->limit(1);
 
-        //print $this->db->last_query();die;
+        $q = $this->db->get();
 
         // get cookiedata only
         if ($from_cookies === true || $oauth == true) {

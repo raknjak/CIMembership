@@ -36,7 +36,7 @@ class Data_by_email_model extends CI_Model {
             $row = $query->row();
             return array('user_id' => $row->user_id, 'username' => $row->username, 'cookie_part' => $row->cookie_part, 'active' => $row->active);
         }
-        return "";
+        return false;
     }
 
 }

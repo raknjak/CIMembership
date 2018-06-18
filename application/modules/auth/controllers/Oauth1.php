@@ -144,7 +144,7 @@ class OAuth1 extends Auth_Controller
                 $this->session->set_flashdata('error', $this->lang->line('oauth1_login_needs_approval'));
                 redirect('login');
             }elseif (Settings_model::$db_config['registration_activation_required'] == true && $userData->active == false) {
-                $this->session->set_flashdata('error', $this->lang->line('oauth2_not_active'));
+                $this->session->set_flashdata('error', $this->lang->line('oauth1_not_active'));
                 redirect('login');
             }
 
@@ -170,6 +170,13 @@ class OAuth1 extends Auth_Controller
 
         }else{
             // user does not exist
+
+            if (Settings_model::$db_config['register_enabled'] == 0) {
+                $this->session->set_flashdata('error', $this->lang->line('registration_disabled'));
+                redirect('register');
+            }
+
+            // set flashdata for view
             $this->session->set_flashdata('provider', $provider);
             $this->session->set_flashdata('email', $user->email);
 
@@ -198,11 +205,8 @@ class OAuth1 extends Auth_Controller
         if (Settings_model::$db_config['register_enabled'] == 0) {
             $this->session->set_flashdata('error', $this->lang->line('registration_disabled'));
             redirect('register');
-        }elseif (! Settings_model::$db_config['login_enabled']) {
-            $this->session->set_flashdata('error', $this->lang->line('login_disabled'));
-            redirect('login');
         }elseif (! Settings_model::$db_config['oauth_enabled']) {
-            $this->session->set_flashdata('error', $this->lang->line('oauth2_login_disabled'));
+            $this->session->set_flashdata('error', $this->lang->line('oauth1_login_disabled'));
             redirect('login');
         }
 
@@ -260,17 +264,17 @@ class OAuth1 extends Auth_Controller
         $this->email->to($this->input->post('email'));
         $this->email->set_mailtype("html");
 
+        // approval needed?
         if (Settings_model::$db_config['registration_approval_required']) {
-            
             $this->email->subject($this->lang->line('register_email_approve_subject'));
 
             $this->email->message(
-                $this->load->view('generic/email_templates/header.php', array('new_username' => $oauth1_username), true) .
+                $this->load->view('generic/email_templates/header.php', array('username' => $oauth1_username), true) .
                 $this->load->view('themes/bootstrap3/email_templates/oauth1.php', '', true) .
                 $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
             );
             $this->email->set_alt_message(
-                $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $oauth1_username), true) .
+                $this->load->view('generic/email_templates/header-txt.php', array('username' => $oauth1_username), true) .
                 $this->load->view('themes/bootstrap3/email_templates/oauth1-txt.php', '', true) .
                 $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
             );
@@ -288,12 +292,12 @@ class OAuth1 extends Auth_Controller
             $this->email->subject($this->lang->line('oauth1_welcome_subject'));
 
             $this->email->message(
-                $this->load->view('generic/email_templates/header.php', array('new_username' => $oauth1_username), true) .
+                $this->load->view('generic/email_templates/header.php', array('username' => $oauth1_username), true) .
                 $this->load->view('themes/bootstrap3/email_templates/oauth1-active.php', '', true) .
                 $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
             );
             $this->email->set_alt_message(
-                $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $oauth1_username), true) .
+                $this->load->view('generic/email_templates/header-txt.php', array('username' => $oauth1_username), true) .
                 $this->load->view('themes/bootstrap3/email_templates/oauth1-active-txt.php', '', true) .
                 $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
             );

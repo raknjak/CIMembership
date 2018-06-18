@@ -127,12 +127,12 @@ class OAuth2 extends Auth_Controller {
             $this->session->set_flashdata('error', $this->lang->line('oauth2_invalid_token'));
             redirect('login');
         }
-
+//var_dump($token);
         // Get profile data
         try {
             // Grab user details
             $user = $providerObject->getResourceOwner($token);
-
+//var_dump($user);
         } catch (Exception $e) {
 
             $this->session->set_flashdata('error', $this->lang->line('oauth2_load_userdata_failed'));
@@ -215,7 +215,7 @@ class OAuth2 extends Auth_Controller {
 
     /**
      *
-     * finalize: OAuth login is successful: finalize by creating account
+     * finalize: OAuth account creation is successful: finalize by creating account
      *
      */
 
@@ -225,9 +225,6 @@ class OAuth2 extends Auth_Controller {
         if (Settings_model::$db_config['register_enabled'] == 0) {
             $this->session->set_flashdata('error', $this->lang->line('registration_disabled'));
             redirect('register');
-        }elseif (! Settings_model::$db_config['login_enabled']) {
-            $this->session->set_flashdata('error', $this->lang->line('login_disabled'));
-            redirect('login');
         }elseif (! Settings_model::$db_config['oauth_enabled']) {
             $this->session->set_flashdata('error', $this->lang->line('oauth2_login_disabled'));
             redirect('login');
@@ -303,6 +300,7 @@ class OAuth2 extends Auth_Controller {
         // send confirmation email
         $this->load->helper('send_email');
         $this->load->library('email', load_email_config(Settings_model::$db_config['email_protocol']));
+
         $this->email->from(Settings_model::$db_config['admin_email'], $_SERVER['HTTP_HOST']);
         $this->email->to($this->input->post('email'));
         $this->email->set_mailtype("html");
@@ -312,12 +310,12 @@ class OAuth2 extends Auth_Controller {
             $this->email->subject($this->lang->line('register_email_approve_subject'));
 
             $this->email->message(
-                $this->load->view('generic/email_templates/header.php', array('new_username' => $oauth2_username), true) .
+                $this->load->view('generic/email_templates/header.php', array('username' => $oauth2_username), true) .
                 $this->load->view('themes/bootstrap3/email_templates/oauth2.php', '', true) .
                 $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
             );
             $this->email->set_alt_message(
-                $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $oauth2_username), true) .
+                $this->load->view('generic/email_templates/header-txt.php', array('username' => $oauth2_username), true) .
                 $this->load->view('themes/bootstrap3/email_templates/oauth2-txt.php', '', true) .
                 $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
             );
@@ -334,12 +332,12 @@ class OAuth2 extends Auth_Controller {
             $this->email->subject($this->lang->line('oauth2_welcome_subject'));
 
             $this->email->message(
-                $this->load->view('generic/email_templates/header.php', array('new_username' => $oauth2_username), true) .
+                $this->load->view('generic/email_templates/header.php', array('username' => $oauth2_username), true) .
                 $this->load->view('themes/bootstrap3/email_templates/oauth2-active.php', '', true) .
                 $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
             );
             $this->email->set_alt_message(
-                $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $oauth2_username), true) .
+                $this->load->view('generic/email_templates/header-txt.php', array('username' => $oauth2_username), true) .
                 $this->load->view('themes/bootstrap3/email_templates/oauth2-active-txt.php', '', true) .
                 $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
             );

@@ -42,6 +42,7 @@ class Register_model extends CI_Model {
 
         $this->db->set('date_registered', 'NOW()', FALSE);
         $this->db->set('last_login', 'NOW()', FALSE);
+        $this->db->set('last_updated', 'NOW()', FALSE);
         $this->db->insert(DB_PREFIX .'user', $data);
 
         $last_id = $this->db->insert_id();

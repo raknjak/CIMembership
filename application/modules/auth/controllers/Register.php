@@ -120,29 +120,29 @@ class Register extends Auth_Controller {
                     );
 
                 $this->email->message(
-                    $this->load->view('generic/email_templates/header.php', array('new_username' => $actual_username), true) .
+                    $this->load->view('generic/email_templates/header.php', array('username' => $actual_username), true) .
                     $this->load->view('themes/bootstrap3/email_templates/register-activation.php', $data, true) .
                     $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
                 $this->email->set_alt_message(
-                    $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $actual_username), true) .
+                    $this->load->view('generic/email_templates/header-txt.php', array('username' => $actual_username), true) .
                     $this->load->view('themes/bootstrap3/email_templates/register-activation-txt.php', $data, true) .
                     $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
 
                 $this->email->send();
-                $this->session->set_flashdata('success', '<p>' . $this->lang->line('register_email_success') . '</p>');
+                $this->session->set_flashdata('success', $this->lang->line('register_email_success'));
 
             }elseif (Settings_model::$db_config['registration_approval_required']) {
                 $this->email->subject($this->lang->line('register_email_approve_subject'));
 
                 $this->email->message(
-                    $this->load->view('generic/email_templates/header.php', array('new_username' => $actual_username), true) .
+                    $this->load->view('generic/email_templates/header.php', array('username' => $actual_username), true) .
                     $this->load->view('themes/bootstrap3/email_templates/register-approval.php', '', true) .
                     $this->load->view('v/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
                 $this->email->set_alt_message(
-                    $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $actual_username), true) .
+                    $this->load->view('generic/email_templates/header-txt.php', array('username' => $actual_username), true) .
                     $this->load->view('themes/bootstrap3/email_templates/register-approval-txt.php', '', true) .
                     $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
@@ -153,18 +153,16 @@ class Register extends Auth_Controller {
                 $this->email->subject($this->lang->line('register_email_active_subject'));
 
                 $this->email->message(
-                    $this->load->view('generic/email_templates/header.php', array('new_username' => $actual_username), true) .
-                    $this->load->view('themes/bootstrap3/email_templates/register-approval.php', '', true) .
+                    $this->load->view('generic/email_templates/header.php', array('username' => $actual_username), true) .
+                    $this->load->view('themes/bootstrap3/email_templates/register-active.php', '', true) .
                     $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
                 $this->email->set_alt_message(
-                    $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $actual_username), true) .
-                    $this->load->view('themes/bootstrap3/email_templates/register-approval-txt.php', '', true) .
+                    $this->load->view('generic/email_templates/header-txt.php', array('username' => $actual_username), true) .
+                    $this->load->view('themes/bootstrap3/email_templates/register-active-txt.php', '', true) .
                     $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
 
-
-                $this->email->message(sprintf($this->lang->line('register_email_active_message'), $actual_username));
                 $this->email->send();
                 $this->session->set_flashdata('success', $this->lang->line('register_email_active_success'));
             }

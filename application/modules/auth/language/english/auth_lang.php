@@ -12,9 +12,6 @@ $lang['max_login_attempts_reached']     = 'Max login attempts hard ceiling reach
 $lang['login_loading_text']             = 'Validating...';
 $lang['login_needs_approval']           = 'Your account needs to be approved by an admin before you can log in.';
 
-// logout
-$lang['logout_msg']                     = 'You have been logged out.';
-
 // Renew password
 $lang['renew_password_title']           = 'Renew password';
 $lang['renew_password_email_address']   = 'Email address';
@@ -63,13 +60,13 @@ $lang['register_password_confirm']              = 'Confirm password';
 $lang['register_required_fields']               = '(All fields are required)';
 $lang['register_email_activation_subject']      = 'Please activate your account.';
 $lang['register_email_activation_message']      = "Thank you for registering with us.<br>To activate your account please visit the link below (or copy-paste into your browser)";
-$lang['register_email_activation_message_txt']   = "Thank you for registering with us.". PHP_EOL ."To activate your account please visit the link below (or copy-paste into your browser)";
+$lang['register_email_activation_message_txt']  = "Thank you for registering with us.". PHP_EOL ."To activate your account please visit the link below (or copy-paste into your browser)";
 $lang['register_email_activation_link']         = "click here to activate";
 $lang['register_email_active_subject']          = "Your account is activated!";
 $lang['register_email_active_message']          = "Thank you for registering with us.<br>Your account is active and you can log in <a href=\"". base_url() ."login\">here</a>.";
 $lang['register_email_active_message_txt']      = "Thank you for registering with us.". PHP_EOL ."Your account is active and you can log in here:". PHP_EOL ." ". base_url() ."login";
 $lang['register_email_active_success']          = "Your account is active. Welcome!";
-$lang['register_email_approve_subject']         = "Your account is created!";
+$lang['register_email_approve_subject']         = "Your account has been created!";
 $lang['register_email_approve_message']         = "Thank you for registering with us.<br>Your account will be approved by one of our administrators. Once this has happened you can log in <a href=\"". base_url() ."login\">here</a>.";
 $lang['register_email_approve_message_txt']     = "Thank you for registering with us.". PHP_EOL ."Your account will be approved by one of our administrators. Once this has happened you can log in here: ". PHP_EOL ." ". base_url() ."login";
 $lang['register_email_approve_success']         = "Your account has been created and will be approved by one of our administrators.";

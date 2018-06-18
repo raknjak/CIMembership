@@ -75,10 +75,10 @@ class Login extends Auth_Controller {
             if ($userData->banned == true) { // check banned
                 $this->session->set_flashdata('error', $this->lang->line('account_access_denied'));
                 redirect('login');
-            }elseif (Settings_model::$db_config['registration_approval_required'] === true && $userData->approved == false) {
+            }elseif (Settings_model::$db_config['registration_approval_required'] == true && $userData->approved == false) {
                 $this->session->set_flashdata('error', $this->lang->line('login_needs_approval'));
                 redirect('login');
-            }elseif (Settings_model::$db_config['registration_activation_required'] === true && $userData->active == false) { // check active
+            }elseif (Settings_model::$db_config['registration_activation_required'] == true && $userData->active == false) { // check active
                 $this->session->set_flashdata('error', $this->lang->line('account_activate'));
                 redirect('login');
             }else{
@@ -115,6 +115,7 @@ class Login extends Auth_Controller {
 
                 redirect('membership/'. strtolower(Settings_model::$db_config['home_page']));
             }
+
         }else{
             $this->session->set_flashdata('error', $this->lang->line('login_incorrect'));
             $this->session->set_userdata('login_attempts', $userData);
