@@ -83,12 +83,12 @@ class Contact_member extends Admin_Controller {
         $username = get_username_from_email($this->input->post('email'));
 
         $this->email->message(
-            $this->load->view('themes/adminpanel/email_templates/header-contact-member.php', array('new_username' => $username), true) .
+            $this->load->view('themes/adminpanel/email_templates/header-contact-member.php', array('username' => $username), true) .
             $this->load->view('themes/adminpanel/email_templates/contact-member.php', array('html' => $clean_html), true) .
             $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
         );
         $this->email->set_alt_message(
-            $this->load->view('themes/adminpanel/email_templates/header-contact-member-txt.php', array('new_username' => $username), true) .
+            $this->load->view('themes/adminpanel/email_templates/header-contact-member-txt.php', array('username' => $username), true) .
             $this->load->view('themes/adminpanel/email_templates/contact-member-txt.php', array('html' => strip_tags($clean_html)), true) .
             $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
         );

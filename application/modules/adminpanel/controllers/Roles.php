@@ -163,7 +163,7 @@ class Roles extends Admin_Controller {
 
     public function save_role_permissions() {
 
-        if ($this->input->post('role_id') == 1) { // check for admin role id - cannot be removed
+        if ($this->input->post('role_id') == 1) { // check for admin role id - cannot be changed
             $this->session->set_flashdata('error', $this->lang->line('roles_admin_noedit_permissions'));
             redirect('adminpanel/roles');
         }
