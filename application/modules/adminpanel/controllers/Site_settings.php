@@ -109,7 +109,7 @@ class Site_settings extends Admin_Controller {
             'site_title' => $this->input->post('site_title'),
             'admin_email' => $this->input->post('admin_email'),
             'disable_all' => ($this->input->post('disable_all') == "" ? 0 : 1),
-            'admin_ip_address' => $this->input->post('admin_ip_address'),
+            'admin_ip_address' => str_replace(" ", "", $this->input->post('admin_ip_address')),
             'site_disabled_text' => $this->input->post('site_disabled_text'),
             'members_per_page' => ($this->input->post('members_per_page') > 0 ? $this->input->post('members_per_page') : 10),
             'active_theme' => ($active_theme == TRUE ? $this->input->post('active_theme') : Settings_model::$db_config['active_theme']),
