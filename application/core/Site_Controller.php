@@ -13,7 +13,10 @@ class Site_Controller extends MY_Controller
 
         // first check if site offline
         $this->load->helper('ip');
-        if(Settings_model::$db_config['disable_all'] == 1 && !in_array(get_user_ip(), (array) Settings_model::$db_config['admin_ip_address'])) {
+
+        $ip_array = explode(",", Settings_model::$db_config['admin_ip_address']);
+
+        if(Settings_model::$db_config['disable_all'] == 1 && !in_array(get_user_ip(), $ip_array)) {
             $this->session->set_flashdata('error', Settings_model::$db_config['site_disabled_text']);
             redirect('utils/site_offline');
         }

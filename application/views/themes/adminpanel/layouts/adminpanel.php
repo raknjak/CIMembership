@@ -8,7 +8,7 @@
 
 	<!-- Stylesheet -->
     <link href="<?php echo base_url(); ?>assets/css/adminpanel/bootstrap.min.css" rel="stylesheet">
-
+    <?php echo $template['css']; ?>
     <!-- Google web font -->
     <?php $this->load->view('generic/fonts/webfont-source+sans+pro'); ?>
 

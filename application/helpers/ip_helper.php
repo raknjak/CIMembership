@@ -25,7 +25,7 @@ if (!function_exists('get_user_ip')) {
 if (!function_exists('check_ip')) {
     function check_ip($ips) {
 
-        $array = explode(',', $ips);
+        $array = explode(',', str_replace(" ", "", $ips));
 
         foreach($array as $ip) {
             if (!filter_var($ip, FILTER_VALIDATE_IP)) {

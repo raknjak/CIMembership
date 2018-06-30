@@ -1,0 +1,23 @@
+{
+    "name": "tpavlek/oauth2-twitch",
+    "description": "A Twitch provider for league/oauth2-client",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Davide Gaido",
+            "email": "davide@0plus1.com"
+        },
+        {
+            "name": "Troy Pavlek",
+            "email": "troy@tpavlek.me"
+        }
+    ],
+    "require": {
+        "league/oauth2-client": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Depotwarehouse\\OAuth2\\Client\\Twitch\\": "src/"
+        }
+    }
+}

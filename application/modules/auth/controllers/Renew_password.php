@@ -67,24 +67,24 @@ class Renew_password extends Auth_Controller {
                 $data['token'] = $token;
 
                 $this->email->message(
-                    $this->load->view('generic/email_templates/header.php', array('new_username' => $data['username']), true) .
+                    $this->load->view('generic/email_templates/header.php', array('username' => $data['username']), true) .
                     $this->load->view('themes/bootstrap3/email_templates/renew-password.php', $data, true) .
                     $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
                 $this->email->set_alt_message(
-                    $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $data['username']), true) .
+                    $this->load->view('generic/email_templates/header-txt.php', array('username' => $data['username']), true) .
                     $this->load->view('themes/bootstrap3/email_templates/renew-password-txt.php', $data, true) .
                     $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
                 $this->email->send();
-                $this->session->set_flashdata('success', $this->lang->line('renew_password_success') .'</p>');
+                $this->session->set_flashdata('success', $this->lang->line('renew_password_success'));
             }else{
-                $this->session->set_flashdata('error', $this->lang->line('renew_password_failed_db') .'</p>');
+                $this->session->set_flashdata('error', $this->lang->line('renew_password_failed_db'));
             }
 
             redirect('renew_password');
         }else{
-            $this->session->set_flashdata('error', $this->lang->line('email_not_found') .'</p>');
+            $this->session->set_flashdata('error', $this->lang->line('email_not_found'));
         }
 
         $this->session->set_flashdata('email', $this->input->post('email'));

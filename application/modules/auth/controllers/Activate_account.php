@@ -23,8 +23,10 @@ class Activate_account extends Auth_Controller {
     public function check($email = NULL, $cookie_part = NULL) {
         $this->load->library('form_validation');
 
+        $email = urldecode($email);
+
 		if (empty($email)
-            || !$this->form_validation->is_valid_email(urldecode($email))
+            || !$this->form_validation->is_valid_email($email)
             || empty($cookie_part)
             || !$this->form_validation->alpha_numeric($cookie_part)
             || !$this->form_validation->exact_length($cookie_part, 32))
@@ -36,7 +38,7 @@ class Activate_account extends Auth_Controller {
 
         $content_data = array();
 
-        $validation = $this->activate_account_model->activate_member(urldecode($email), $cookie_part);
+        $validation = $this->activate_account_model->activate_member($email, $cookie_part);
 
         switch ($validation) {
             case "nomatch":

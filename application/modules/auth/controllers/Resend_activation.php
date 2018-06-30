@@ -39,7 +39,11 @@ class Resend_activation extends Auth_Controller {
         $this->load->model('auth/data_by_email_model');
         $data = $this->data_by_email_model->get_data_by_email($this->input->post('email'));
 
-        if ($data['active']) {
+        if (!$data) {
+            // email does not exist
+            $this->session->set_flashdata('error', $this->lang->line('email_not_found'));
+            redirect('retrieve_username');
+        }elseif ($data['active']) {
             $this->session->set_flashdata('error', $this->lang->line('account_active'));
             redirect('resend_activation');
 
@@ -60,12 +64,12 @@ class Resend_activation extends Auth_Controller {
                 $data['email'] = $this->input->post('email');
 
                 $this->email->message(
-                    $this->load->view('generic/email_templates/header.php', array('new_username' => $data['username']), true) .
+                    $this->load->view('generic/email_templates/header.php', array('username' => $data['username']), true) .
                     $this->load->view('themes/bootstrap3/email_templates/resend-activation.php', $data, true) .
                     $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
                 $this->email->set_alt_message(
-                    $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $data['username']), true) .
+                    $this->load->view('generic/email_templates/header-txt.php', array('username' => $data['username']), true) .
                     $this->load->view('themes/bootstrap3/email_templates/resend-activation-txt.php', $data, true) .
                     $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
@@ -81,6 +85,8 @@ class Resend_activation extends Auth_Controller {
                 $this->email->send();
                 $this->session->set_flashdata('success', $this->lang->line('resend_activation_email_active_success'));
             }
+
+            $this->email->clear();
 
             redirect('resend_activation');
 

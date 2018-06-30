@@ -136,7 +136,7 @@ class List_members extends Admin_Controller {
     public function toggle_ban($id, $username, $offset, $order_by, $sort_order, $search, $banned) {
 
         if (! self::check_permissions(9)) {
-            $this->session->set_flasdata('error', $this->lang->line('no_permissions'));
+            $this->session->set_flashdata('error', $this->lang->line('no_permissions'));
             redirect("/adminpanel/list_members");
         }
 
@@ -169,7 +169,7 @@ class List_members extends Admin_Controller {
     public function toggle_active($id, $username, $offset, $order_by, $sort_order, $search, $active) {
 
         if (! self::check_permissions(10)) {
-            $this->session->set_flasdata('error', $this->lang->line('no_permissions'));
+            $this->session->set_flashdata('error', $this->lang->line('no_permissions'));
             redirect("/adminpanel/list_members");
         }
 
@@ -191,7 +191,7 @@ class List_members extends Admin_Controller {
         }
 
         if (! self::check_permissions(16)) {
-            $this->session->set_flasdata('error', $this->lang->line('no_permissions'));
+            $this->session->set_flashdata('error', $this->lang->line('no_permissions'));
             redirect("/adminpanel/list_members");
         }
 
@@ -256,7 +256,7 @@ class List_members extends Admin_Controller {
     private function _delete($offset, $order_by, $sort_order, $search) {
 
         if (! self::check_permissions(6)) {
-            $this->session->set_flasdata('error', $this->lang->line('no_permissions'));
+            $this->session->set_flashdata('error', $this->lang->line('no_permissions'));
             redirect("/adminpanel/list_members");
         }
 
@@ -311,7 +311,7 @@ class List_members extends Admin_Controller {
     private function _mass_banning($offset, $order_by, $sort_order, $search, $action) {
 
         if (! self::check_permissions(9)) {
-            $this->session->set_flasdata('error', $this->lang->line('no_permissions'));
+            $this->session->set_flashdata('error', $this->lang->line('no_permissions'));
             redirect("/adminpanel/list_members");
         }
 
@@ -327,7 +327,7 @@ class List_members extends Admin_Controller {
     private function _mass_activation($offset, $order_by, $sort_order, $search, $action) {
 
         if (! self::check_permissions(10)) {
-            $this->session->set_flasdata('error', $this->lang->line('no_permissions'));
+            $this->session->set_flashdata('error', $this->lang->line('no_permissions'));
             redirect("/adminpanel/list_members");
         }
 
@@ -347,7 +347,7 @@ class List_members extends Admin_Controller {
         }
 
         if (! self::check_permissions(16)) {
-            $this->session->set_flasdata('error', $this->lang->line('no_permissions'));
+            $this->session->set_flashdata('error', $this->lang->line('no_permissions'));
             redirect("/adminpanel/list_members");
         }
 

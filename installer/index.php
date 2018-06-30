@@ -50,7 +50,7 @@ if($_POST) {
 <div class="container-fluid">
     <h1 class="text-center">CIMembership Installer</h1>
 
-    <h2 class="fg-danger text-center">The installer is in beta - please report any issues and I will fix them swiftly.</h2>
+    <h2 class="fg-danger text-center">The installer is in beta - please report any issues.</h2>
 
     <div class="row pd-15">
         <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
@@ -61,7 +61,6 @@ if($_POST) {
                         <th>PHP version</th>
                         <th>mysqli enabled?</th>
                         <th>cURL enabled?</th>
-                        <th>Mcrypt enabled?</th>
                         <th>finfo_file enabled?</th>
                         <th>OpenSSL</th>
                     </tr>
@@ -71,7 +70,6 @@ if($_POST) {
                         <td><?php print phpversion() . " = " . (version_compare(substr(phpversion(), 0, 3), '5.5', '>=') == true ? "ok" : "nok"); ?></td>
                         <td><?php print (function_exists('mysqli_connect') == true ? "ok" : "nok"); ?></td>
                         <td><?php print (function_exists('curl_version') == true ? "ok" : "nok"); ?></td>
-                        <td><?php print (function_exists('mcrypt_encrypt') == true ? "ok" : "nok"); ?></td>
                         <td><?php print (function_exists('finfo_file') == true ? "ok" : "nok"); ?></td>
                         <td><?php print (extension_loaded('openssl') == true ? "ok" : "nok"); ?></td>
                     </tr>
@@ -88,7 +86,6 @@ if($_POST) {
     if ((!version_compare(substr(phpversion(), 0, 3), '5.6', '>=')) ||
         !function_exists('mysqli_connect') ||
         !function_exists('curl_version') ||
-        !function_exists('mcrypt_encrypt') ||
         !function_exists('finfo_file') ||
         !extension_loaded('openssl')
     ) {
@@ -184,7 +181,7 @@ if($_POST) {
 
     var Password = {
 
-        _pattern : /[a-zA-Z0-9_\-\+\#\%\&\(\)\[\]\!\@\?.]/,
+        _pattern : /[a-zA-Z0-9_\-+#%&()\[\]!@?.]/,
 
 
         _getRandomByte : function()

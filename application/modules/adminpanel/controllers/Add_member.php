@@ -117,12 +117,12 @@ class Add_member extends Admin_Controller {
                 $this->email->subject($this->lang->line('add_member_email_active_subject'));
 
                 $this->email->message(
-                    $this->load->view('generic/email_templates/header.php', array('new_username' => $new_username), true) .
+                    $this->load->view('generic/email_templates/header.php', array('username' => $new_username), true) .
                     $this->load->view('themes/adminpanel/email_templates/add-member.php', '', true) .
                     $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
                 $this->email->set_alt_message(
-                    $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $new_username), true) .
+                    $this->load->view('generic/email_templates/header-txt.php', array('username' => $new_username), true) .
                     $this->load->view('themes/adminpanel/email_templates/add-member-txt.php', '', true) .
                     $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
@@ -136,12 +136,12 @@ class Add_member extends Admin_Controller {
                 $this->email->subject($this->lang->line('add_member_email_subject'));
 
                 $this->email->message(
-                    $this->load->view('generic/email_templates/header.php', array('new_username' => $new_username), true) .
+                    $this->load->view('generic/email_templates/header.php', array('username' => $new_username), true) .
                     $this->load->view('themes/adminpanel/email_templates/add-member-activation.php', array('cookie_part' => $return_array['cookie_part']), true) .
                     $this->load->view('generic/email_templates/footer.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
                 $this->email->set_alt_message(
-                    $this->load->view('generic/email_templates/header-txt.php', array('new_username' => $new_username), true) .
+                    $this->load->view('generic/email_templates/header-txt.php', array('username' => $new_username), true) .
                     $this->load->view('themes/adminpanel/email_templates/add-member-activation-txt.php', array('cookie_part' => $return_array['cookie_part']), true) .
                     $this->load->view('generic/email_templates/footer-txt.php', array('site_title' => Settings_model::$db_config['site_title']), true)
                 );
@@ -149,6 +149,8 @@ class Add_member extends Admin_Controller {
                 $this->email->send();
                 $this->session->set_flashdata('success', $this->lang->line('add_member_created'));
             }
+
+            // note: approval is not required as we are creating the account manually anyway
 
             redirect('/adminpanel/member_detail/'. $return_array['user_id']);
 

@@ -6,6 +6,9 @@
 $lang['header_login']          = 'Log in';
 $lang['header_logout']         = 'Log out';
 
+// logout
+$lang['logout_msg']                     = 'You have been logged out.';
+
 // RecaptchaV2
 $lang['recaptchav2_response']           = "I am not a robot";
 $lang['recaptcha_class_initialized']    = 'reCaptcha Library Initialized';

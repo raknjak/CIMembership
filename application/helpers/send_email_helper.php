@@ -31,6 +31,7 @@ if (!function_exists('load_email_config')) {
                     'smtp_user' => $CI->encryption->decrypt(Settings_model::$db_config['smtp_user']),
                     'smtp_pass' => $CI->encryption->decrypt(Settings_model::$db_config['smtp_pass']),
                     'smtp_timeout' => 30,
+                    'smtp_crypto' => '', // can be tls or ssl depending on your server setup
                     'charset' => "utf-8",
                     'newline' => "\r\n"
                 );
