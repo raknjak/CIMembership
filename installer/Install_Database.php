@@ -89,7 +89,7 @@ class Install_Database {
             // ci_config
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."ci_config` (
-                  `ci_config_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                  `ci_config_id` int(11) NOT NULL AUTO_INCREMENT,
                   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
                   `value` text COLLATE utf8_unicode_ci NOT NULL,
                   PRIMARY KEY (`ci_config_id`)
@@ -152,9 +152,9 @@ class Install_Database {
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."ci_session` (
                     `id` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-                    `user_id` int(11) unsigned DEFAULT NULL,
+                    `user_id` int(11) DEFAULT NULL,
                     `ip_address` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-                    `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
+                    `timestamp` int(10) NOT NULL DEFAULT '0',
                     `data` blob NOT NULL,
                     PRIMARY KEY (`id`),
                     KEY `ci_session_timestamp` (`timestamp`),
@@ -167,7 +167,7 @@ class Install_Database {
             // oauth_provider
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."oauth_provider` (
-                    `oauth_provider_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                    `oauth_provider_id` int(10) NOT NULL AUTO_INCREMENT,
                     `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                     `oauth_type` tinyint(4) NOT NULL DEFAULT '2',
                     `client_id` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -197,7 +197,7 @@ class Install_Database {
             // permission
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."permission` (
-                    `permission_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                    `permission_id` int(11) NOT NULL AUTO_INCREMENT,
                     `permission_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                     `permission_system` tinyint(1) NOT NULL DEFAULT '0',
                     `permission_order` int(11) NOT NULL,
@@ -232,8 +232,8 @@ class Install_Database {
             // recover_password
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."recover_password` (
-                    `recover_password_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-                    `user_id` int(11) unsigned NOT NULL,
+                    `recover_password_id` int(11) NOT NULL AUTO_INCREMENT,
+                    `user_id` int(11) NOT NULL,
                     `token` char(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                     `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                     `date_added` datetime DEFAULT NULL,
@@ -247,7 +247,7 @@ class Install_Database {
             // role
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."role` (
-                    `role_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                    `role_id` int(11) NOT NULL AUTO_INCREMENT,
                     `role_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                     `role_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                     `role_selectable` tinyint(1) NOT NULL DEFAULT '1',
@@ -268,8 +268,8 @@ class Install_Database {
             // role_permission
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."role_permission` (
-                    `role_id` int(11) unsigned NOT NULL,
-                    `permission_id` int(11) unsigned NOT NULL,
+                    `role_id` int(11) NOT NULL,
+                    `permission_id` int(11) NOT NULL,
                     PRIMARY KEY (`role_id`,`permission_id`),
                     KEY `fk_role_permission_permission_id_idx` (`permission_id`),
                     KEY `fk_role_permission_role_id_idx` (`role_id`)
@@ -329,7 +329,7 @@ class Install_Database {
             // setting
             // ---------------------------------------------------------------------------------------------------------
             $sql ="CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."setting` (
-                    `setting_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                    `setting_id` int(11) NOT NULL AUTO_INCREMENT,
                     `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                     `value` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
                     PRIMARY KEY (`setting_id`),
@@ -386,7 +386,7 @@ class Install_Database {
             // user
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE `". $data['db_prefix'] ."user` (
-                  `user_id` int(11) UNSIGNED NOT NULL,
+                  `user_id` int(11) NOT NULL,
                   `username` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
                   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
                   `email` varchar(254) COLLATE utf8_unicode_ci NOT NULL,
@@ -406,17 +406,17 @@ class Install_Database {
             $this->_mysqli->query($sql);
 
             $sql = "INSERT INTO `". $data['db_prefix'] ."user` (`user_id`, `username`, `password`, `email`, `date_registered`, `last_login`,
-            `first_name`, `last_name`, `active`, `login_attempts`, `last_updated`) VALUES
+            `first_name`, `last_name`, `active`, `login_attempts`) VALUES
                     (1, '". $data['username'] ."', '". password_hash($data['password'], PASSWORD_DEFAULT) ."', '". $data['email'] ."', NOW(), NOW(),
-                     '', '', 1, 0, NOW());";
+                     '', '', 1, NOW());";
 
             $this->_mysqli->query($sql);
 
             // username_history
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."username_history` (
-                    `username_history_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-                    `user_id` int(11) unsigned NOT NULL,
+                    `username_history_id` int(11) NOT NULL AUTO_INCREMENT,
+                    `user_id` int(11) NOT NULL,
                     `username` varchar(24) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                     `last_updated` datetime NOT NULL,
                     PRIMARY KEY (`username_history_id`),
@@ -441,7 +441,7 @@ class Install_Database {
             // user_cookie_part
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."user_cookie_part` (
-                    `user_id` int(11) unsigned NOT NULL,
+                    `user_id` int(11) NOT NULL,
                     `cookie_part` char(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                     `ip_address` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                     PRIMARY KEY (`user_id`,`cookie_part`,`ip_address`),
@@ -464,8 +464,8 @@ class Install_Database {
             // user_role
             // ---------------------------------------------------------------------------------------------------------
             $sql = "CREATE TABLE IF NOT EXISTS `". $data['db_prefix'] ."user_role` (
-                    `user_id` int(11) unsigned NOT NULL,
-                    `role_id` int(11) unsigned NOT NULL,
+                    `user_id` int(11) NOT NULL,
+                    `role_id` int(11) NOT NULL,
                     PRIMARY KEY (`user_id`,`role_id`),
                     KEY `fk_user_role_user_id_idx` (`user_id`),
                     KEY `fk_user_role_role_id_idx` (`role_id`)
@@ -502,7 +502,7 @@ class Install_Database {
             $this->_mysqli->query($sql);
 
             $sql = "ALTER TABLE `". $data['db_prefix'] ."user`
-                MODIFY `user_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;";
+                MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;";
 
             $this->_mysqli->query($sql);
 
