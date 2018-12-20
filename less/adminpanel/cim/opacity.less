@@ -1,0 +1,56 @@
+//-> Opacity ---------------------------------------------------------------------------------------------------------
+// set opacity styling for links
+a.opacity {
+  .opacity(@opacity);
+
+  &:hover {
+    .opacity(1);
+  }
+}
+
+// set inverse opacity styling for links
+a.opacity-inv {
+  &:hover {
+    .opacity(@opacity);
+  }
+}
+
+// other
+a.opacity,
+a.opacity-inv {
+
+ // display: block;
+  transition: all @app-transition; // needs to be set again for image
+
+  // fix for FF image hopping on hover with opacity transitions without background color set
+  img {
+    background-color: rgba(255,255,255,.01);
+  }
+}
+
+
+// opacity play
+.opacity-2 {
+  .opacity(.2);
+}
+.opacity-4 {
+  .opacity(.4);
+}
+.opacity-5 {
+  .opacity(.5);
+}
+.opacity-6 {
+  .opacity(.6);
+}
+.opacity-8 {
+  .opacity(.8);
+}
+
+
+.opacity-light {
+  background: rgba(255,255,255,0.1);
+}
+
+.opacity-dark {
+  background: rgba(0,0,0,0.1);
+}

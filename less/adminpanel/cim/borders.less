@@ -1,0 +1,264 @@
+.bk-border-variant(@border-color) {
+
+  border: 1px solid @border-color !important;
+
+  &-right {
+    border-right: 1px solid @border-color !important;
+  }
+
+  &.bd-darken {
+    a:not(.btn)&:hover {
+      border-color: darken(@border-color, @link-darken-percentage) !important;
+    }
+  }
+
+  &.bd-lighten {
+    a:not(.btn)&:hover {
+      border-color: lighten(@border-color, @link-lighten-percentage) !important;
+    }
+  }
+}
+
+//-> Borders
+.bd-primary {
+  .bk-border-variant(@brand-primary);
+}
+
+.bd-db-primary { // double border
+  border: 1px solid @brand-primary;
+  padding: 4px;
+}
+
+.bd-success {
+  .bk-border-variant(@brand-success);
+}
+
+.bd-db-success {
+  border: 1px solid @brand-success;
+  padding: 4px;
+}
+
+.bd-info {
+  .bk-border-variant(@brand-info);
+}
+
+.bd-db-info {
+  border: 1px solid @brand-info;
+  padding: 4px;
+}
+
+.bd-warning {
+  .bk-border-variant(@brand-warning);
+}
+
+.bd-db-warning {
+  border: 1px solid @brand-warning;
+  padding: 4px;
+}
+
+.bd-danger {
+  .bk-border-variant(@brand-danger);
+}
+
+.bd-db-danger {
+  border: 1px solid @brand-danger;
+  padding: 4px;
+}
+
+.bd-very-light-gray {
+  .bk-border-variant(@brand-very-light-gray);
+}
+
+.bd-db-very-light-gray {
+  border: 1px solid @brand-very-light-gray;
+  padding: 4px;
+}
+
+.bd-textcolor {
+  .bk-border-variant(@text-color);
+}
+
+.bd-db-textcolor {
+  border: 1px solid @text-color;
+  padding: 4px;
+}
+
+.bd-inverse {
+  .bk-border-variant(@brand-inverse);
+}
+
+.bd-db-inverse {
+  border: 1px solid @brand-inverse;
+  padding: 4px;
+}
+
+.bd-white {
+  .bk-border-variant(@brand-white);
+}
+
+.bd-db-white {
+  border: 1px solid @brand-white;
+  padding: 4px;
+}
+
+.bd-gray {
+  .bk-border-variant(@brand-gray);
+}
+
+.bd-db-gray {
+  border: 1px solid @brand-gray;
+  padding: 4px;
+}
+
+.bd-light-gray {
+  .bk-border-variant(@brand-light-gray);
+}
+
+.bd-db-light-gray {
+  border: 1px solid @brand-light-gray;
+  padding: 4px;
+}
+
+
+// border sizing
+.bd-0 {
+  border-width: 0 !important;
+}
+
+.bd-2x {
+  border-width: 2px !important;
+}
+
+.bd-3x {
+  border-width: 3px !important;
+}
+
+.bd-4x {
+  border-width: 4px !important;
+}
+
+.bd-5x {
+  border-width: 5px !important;
+}
+
+
+// set transition on backgrounds for child elements of
+a .bk-bd-lighten,
+a .bk-bd-darken {
+  transition: border @app-transition;
+}
+
+//-> Border colors -----------------------------------------------------------------------------------------------
+// coloring borders for children when hovering over link
+a:hover {
+  &.bd-primary, // needed for overriding default border width of 1px set by bk-bd-primary
+  .bd-primary {
+    &.bd-darken {
+      border-color: darken(@brand-primary, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      border-color: lighten(@brand-primary, @link-lighten-percentage) !important;
+    }
+  }
+
+  &.bd-success,
+  .bd-success {
+    &.bd-darken {
+      border-color: darken(@brand-success, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      border-color: lighten(@brand-success, @link-lighten-percentage) !important;
+    }
+  }
+
+  &.bd-info,
+  .bd-info {
+    &.bd-darken {
+      border-color: darken(@brand-info, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      border-color: lighten(@brand-info, @link-lighten-percentage) !important;
+    }
+  }
+
+  &.bd-warning,
+  .bd-warning {
+    &.bd-darken {
+      border-color: darken(@brand-warning, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      border-color: lighten(@brand-warning, @link-lighten-percentage) !important;
+    }
+  }
+
+  &.bd-danger,
+  .bd-danger {
+    &.bd-darken {
+      border-color: darken(@brand-danger, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      border-color: lighten(@brand-danger, @link-lighten-percentage) !important;
+    }
+  }
+
+  &.bd-very-light-gray,
+  .bd-very-light-gray {
+    &.bd-darken {
+      border-color: darken(@brand-very-light-gray, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      border-color: lighten(@brand-very-light-gray, @link-lighten-percentage) !important;
+    }
+  }
+
+  &.bd-textcolor,
+  .bd-textcolor {
+    &.bd-darken {
+      background-color: darken(@text-color, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      background-color: lighten(@text-color, @link-lighten-percentage) !important;
+    }
+  }
+
+  &.bd-inverse,
+  .bd-inverse {
+    &.bd-darken {
+      border-color: darken(@brand-inverse, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      border-color: lighten(@brand-inverse, @link-lighten-percentage) !important;
+    }
+  }
+
+  &.bd-light-gray,
+  .bd-light-gray {
+    &.bd-darken {
+      border-color: darken(@brand-light-gray, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      border-color: lighten(@brand-light-gray, @link-lighten-percentage) !important;
+    }
+  }
+
+  &.bd-gray,
+  .bd-gray {
+    &.bd-darken {
+      border-color: darken(@brand-gray, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      border-color: lighten(@brand-gray, @link-lighten-percentage) !important;
+    }
+  }
+
+  &.bd-white,
+  .bd-white {
+    &.bd-darken {
+      border-color: darken(@brand-white, @link-darken-percentage) !important;
+    }
+    &.bd-lighten {
+      border-color: lighten(@brand-white, @link-lighten-percentage) !important;
+    }
+  }
+
+}

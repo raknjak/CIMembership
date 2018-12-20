@@ -1,0 +1,32 @@
+.card {
+  // standard link settings
+  a {
+    cursor: pointer;
+    transition: @app-transition; // apply default transition
+    text-decoration: none !important; // nein! never! (unwanted underlines are killed like this)
+
+    &:hover {
+      text-decoration: none !important; // nein! never! (unwanted underlines are killed like this)
+    }
+  }
+
+  // must be used with panel for now
+  &.panel,
+  .panel {
+    overflow: hidden; // makes sure rounded corners are visible when applicable
+    background-color: rgba(255,255,255,0); // make bg color transparent
+
+    // fix Chrome not respecting border radius: use where needed (1px or sometimes even 2 get eaten up on the right side of the widget)
+    // - at the moment this issue is only detected on windows
+    // this fix does not work all the time, unfortunately. Chrome (for Windows) seems to be increasingly hard to accommodate.
+    .img-radius {
+      border-radius: @panel-border-radius; // this probably will be removed as soon as the Chrome bug is fixed
+      -webkit-mask-image: -webkit-radial-gradient(circle, white, black); // this definitely can be removed as soon as the Chrome bug is fixed
+    }
+  }
+
+  // Panel bodies acting as links are all taken care of like this
+  a.panel-body {
+    display: block;
+  }
+}

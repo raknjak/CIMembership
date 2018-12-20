@@ -1,0 +1,16 @@
+//-> vertical centering with tables
+.tbl {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+
+  > [class*="col-"],
+  > .tbl-cell {
+    display: table-cell;
+    table-layout: fixed;
+    vertical-align: middle;
+    float: none;
+  }
+}

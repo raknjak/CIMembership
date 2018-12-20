@@ -1,0 +1,143 @@
+.bk-fg-variant(@color) {
+
+  color: @color !important;
+
+  &.fg-darken {
+    a:not(.btn)&:hover {
+      text-decoration: none;
+      color: darken(@color, @link-darken-percentage) !important;
+    }
+  }
+
+  &.fg-lighten {
+    a:not(.btn)&:hover {
+      text-decoration: none;
+      color: lighten(@color, @link-lighten-percentage) !important;
+    }
+  }
+}
+//-> Foreground colors
+.fg-primary {
+  .bk-fg-variant(@brand-primary);
+}
+.fg-success {
+  .bk-fg-variant(@brand-success);
+}
+.fg-info {
+  .bk-fg-variant(@brand-info);
+}
+.fg-warning {
+  .bk-fg-variant(@brand-warning);
+}
+.fg-danger {
+  .bk-fg-variant(@brand-danger);
+}
+.fg-textcolor {
+  .bk-fg-variant(@text-color);
+}
+.fg-inverse {
+  .bk-fg-variant(@brand-inverse);
+}
+.fg-white {
+  .bk-fg-variant(@brand-white);
+}
+.fg-gray {
+  .bk-fg-variant(@brand-gray);
+}
+.fg-light-gray {
+  .bk-fg-variant(@brand-light-gray);
+}
+
+
+
+// set transition on backgrounds for child elements
+a .bk-fg-lighten,
+a .bk-fg-darken {
+  transition: color @app-transition;
+}
+
+//-> Foreground colors -----------------------------------------------------------------------------------------------
+// coloring text for children when hovering over link
+a:hover {
+  .fg-primary {
+    &.fg-darken {
+      color: darken(@brand-primary, @link-darken-percentage) !important;
+    }
+    &.fg-lighten {
+      color: lighten(@brand-primary, @link-lighten-percentage) !important;
+    }
+  }
+  .fg-success {
+    &.fg-darken {
+      color: darken(@brand-success, @link-darken-percentage) !important;
+    }
+    &.fg-lighten {
+      color: lighten(@brand-success, @link-lighten-percentage) !important;
+    }
+  }
+  .fg-info {
+    &.fg-darken {
+      color: darken(@brand-info, @link-darken-percentage) !important;
+    }
+    &.fg-lighten {
+      color: lighten(@brand-info, @link-lighten-percentage) !important;
+    }
+  }
+  .fg-warning {
+    &.fg-darken {
+      color: darken(@brand-warning, @link-darken-percentage) !important;
+    }
+    &.fg-lighten {
+      color: lighten(@brand-warning, @link-lighten-percentage) !important;
+    }
+  }
+  .fg-danger {
+    &.fg-darken {
+      color: darken(@brand-danger, @link-darken-percentage) !important;
+    }
+    &.fg-lighten {
+      color: lighten(@brand-danger, @link-lighten-percentage) !important;
+    }
+  }
+  .fg-textcolor {
+    &.fg-darken {
+      color: darken(@text-color, @link-darken-percentage) !important;
+    }
+    &.fg-lighten {
+      color: lighten(@text-color, @link-lighten-percentage) !important;
+    }
+  }
+
+  .fg-inverse {
+    &.fg-darken {
+      color: darken(@brand-inverse, @link-darken-percentage) !important;
+    }
+    &.fg-lighten {
+      color: lighten(@brand-inverse, @link-lighten-percentage) !important;
+    }
+  }
+  .fg-white {
+    &.fg-darken {
+      color: darken(@brand-white, @link-darken-percentage) !important;
+    }
+    &.fg-lighten {
+      color: lighten(@brand-white, @link-lighten-percentage) !important;
+    }
+  }
+  .fg-gray {
+    &.fg-darken {
+      color: darken(@brand-gray, @link-darken-percentage) !important;
+    }
+    &.fg-lighten {
+      color: lighten(@brand-gray, @link-lighten-percentage) !important;
+    }
+  }
+  .fg-light-gray {
+    &.fg-darken {
+      color: darken(@brand-light-gray, @link-darken-percentage) !important;
+    }
+    &.fg-lighten {
+      color: lighten(@brand-light-gray, @link-lighten-percentage) !important;
+    }
+  }
+}

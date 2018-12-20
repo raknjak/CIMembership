@@ -1,0 +1,183 @@
+.icon { // give the icon some default behavior
+  display: block;
+  text-align: center;
+  border-radius: @border-radius-base;
+  border-width: 0;
+  height: 34px;
+  width: 34px;
+  line-height: 32px;
+
+  &.inline {
+    display: inline-block !important;
+  }
+
+  // sizing adjustments
+  &.icon-default {
+    font-size: 14px;
+
+    // border thickness
+    &.bd-2x {
+      line-height: 30px;
+    }
+
+    &.bd-3x {
+      line-height: 28px;
+    }
+
+    &.bd-4x {
+      line-height: 26px;
+    }
+
+    &.bd-5x {
+      line-height: 24px;
+    }
+
+    &.bd-off { // when we don't add this class to the bk-icon element the icons are too high up
+      line-height: 34px;
+    }
+  }
+
+  // sizing adjustments
+  &.icon-24 {
+    height: 46px;
+    width: 46px;
+    line-height: 42px;
+
+    font-size: 24px;
+
+    // border thickness
+    &.bd-2x {
+      line-height: 40px;
+    }
+
+    &.bd-3x {
+      line-height: 38px;
+    }
+
+    &.bd-4x {
+      line-height: 36px;
+    }
+
+    &.bd-5x {
+      line-height: 34px;
+    }
+
+    &.bd-off { // when we don't add this class to the bk-icon element the icons are too high up
+      line-height: 44px;
+    }
+  }
+
+  &.icon-2x {
+    height: 56px;
+    width: 56px;
+    line-height: 64px;
+
+    // border thickness
+    &.bd-2x {
+      line-height: 62px;
+    }
+
+    &.bd-3x {
+      line-height: 60px;
+    }
+
+    &.bd-4x {
+      line-height: 58px;
+    }
+
+    &.bd-5x {
+      line-height: 56px;
+    }
+
+    &.bd-off { // when we don't add this class to the bk-icon element the icons are too high up
+      line-height: 66px;
+    }
+  }
+
+  &.icon-3x {
+    height: 80px;
+    width: 80px;
+    line-height: 98px;
+
+    // border thickness
+    &.bd-2x {
+      line-height: 96px;
+    }
+
+    &.bd-3x {
+      line-height: 94px;
+    }
+
+    &.bd-4x {
+      line-height: 92px;
+    }
+
+    &.bd-5x {
+      line-height: 90px;
+    }
+
+    &.bd-off { // when we don't add this class to the bk-icon element the icons are too high up
+      line-height: 100px;
+    }
+  }
+
+  &.icon-4x {
+    height: 100px;
+    width: 100px;
+    line-height: 128px;
+
+    // border thickness
+    &.bd-2x {
+      line-height: 126px;
+    }
+
+    &.bd-3x {
+      line-height: 124px;
+    }
+
+    &.bd-4x {
+      line-height: 122px;
+    }
+
+    &.bd-5x {
+      line-height: 120px;
+    }
+
+    &.bd-off { // when we don't add this class to the bk-icon element the icons are too high up
+      line-height: 130px;
+    }
+  }
+
+  &.icon-5x {
+    height: 130px;
+    width: 130px;
+    line-height: 168px;
+
+    // border thickness
+    &.bd-2x {
+      line-height: 166px;
+    }
+
+    &.bd-3x {
+      line-height: 164px;
+    }
+
+    &.bd-4x {
+      line-height: 162px;
+    }
+
+    &.bd-5x {
+      line-height: 160px;
+    }
+
+    &.bd-off { // when we don't add this class to the bk-icon element the icons are too high up
+      line-height: 170px;
+    }
+  }
+}
+
+// make sure the default transition is working
+a.icon,
+a .icon {
+  transition: @app-transition !important;
+}

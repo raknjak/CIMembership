@@ -1,0 +1,57 @@
+// remove overflow
+.overflow-off {
+  overflow: hidden !important;
+}
+
+// add overflow
+.overflow {
+  overflow: visible !important;
+}
+
+// nowrap
+.wrap-off {
+  white-space: nowrap;
+}
+
+// no outline
+.outline-off {
+  outline: none !important;
+}
+
+// no box shadow
+.box-shadow-off {
+  box-shadow: none !important;
+}
+
+// position relative to tell child elements which parent to use (child elements which are also positioned relatively or absolutely)
+.wrapper {
+  position: relative;
+}
+
+// chrome fix or something ... what's in a name; it's just a temp fix for annoying webkit bugs
+.chrome-fix {
+  backface-visibility: hidden; // fix for chrome image moving bug - http://stackoverflow.com/questions/12980153/image-moves-on-hover-chrome-opacity-issue
+  transform-style: preserve-3d; // fix for backface-visibility chrome bug - http://stackoverflow.com/questions/10355564/backface-visibility-broken-in-chrome-certain-platforms-versions
+}
+
+// elevate element to block level
+.block {
+  display: block !important;
+}
+
+// small
+.sml {
+  font-size: 80%;
+}
+
+// font weights
+.f300 { font-weight: 300; }
+.f400 { font-weight: 400; }
+.f500 { font-weight: 500; }
+.f600 { font-weight: 600; }
+.f700 { font-weight: 700; }
+.f800 { font-weight: 800; }
+.f900 { font-weight: 900; }
+
+// remove IE snap-mode (http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/ + http://stackoverflow.com/questions/17045132/scrollbar-overlay-in-ie10-how-do-you-stop-that)
+@-ms-viewport{ width: auto !important; }

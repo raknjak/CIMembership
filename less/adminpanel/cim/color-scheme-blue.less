@@ -1,0 +1,168 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Blue color scheme
+// ---------------------------------------------------------------------------------------------------------------------
+
+// OVERRIDE bootstrap variables.less
+@brand-primary:         #E16E41;
+@brand-success:         #23C950;
+@brand-info:            #2DA4E3;
+@brand-warning:         #DDAA31;
+@brand-danger:          #DF1757;
+
+// general
+@app-background-color:                          #f7f7f7;                                              // background color for the whole application
+@app-min-width:                                 250px;                                                // minimum width for whole application
+@app-link-color:                                @brand-primary;                                       // menu link text color
+@app-link-hover-color:                          darken(@app-link-color, 20%);                         // menu link text hovering color
+
+// header
+@app-header-height:                             50px;                                                 // header height - will be used on other classes to comply with this height
+@app-header-background-color:                   #2A2F36;                                              // header background color
+@app-header-box-shadow:                         0px 0px 4px -2px rgba(0,0,0,0.75);                    // box-shadow for our top navbar header
+
+// body
+@app-body-background:                           url(../../img/public/body-back-blue.jpg) @app-background-color no-repeat fixed;
+
+// navbar
+@app-navbar-brand-color:                        #fff;                                                 // text color for navbar brand
+@app-navbar-brand-color-hover:                  #fff;                                                 // text color for navbar brand when hovering over the link
+@app-navbar-form-control-bg:                    lighten(@app-header-background-color, 4%);            // background color for form control elements inside navbar
+@app-navbar-btn-color:                          #fff;                                                 // button text color on navbar buttons
+@app-navbar-btn-color-hover:                    @brand-primary;
+@app-navbar-btn-background-color:               #2A2F36;                                              // button background color on navbar buttons
+@app-navbar-link-color:                         #fff;                                                 // link color on navbar buttons
+@app-navbar-link-background-color:              #2A2F36;                                              // link background color on navbar buttons
+@app-navbar-link-border-color:                  lighten(#2A2F36, 4%);                                 // colors for navbar link separators
+@app-navbar-color-hover:                        @brand-primary;                                       // background color when hovering over .navbar .nav items
+@app-navbar-background-color:                   darken(#2A2F36, 10%);                                 // background color for .navbar .nav items
+@app-navbar-border-color:                       lighten(#2A2F36, 10%);                                // border color for .navbar .nav items
+
+// aside
+@app-aside-width:                               240px;                                                // width of the aside section
+@app-aside-width-narrow:                        46px;                                                 // width of the aside section when in narrow state
+@app-aside-background-color:                    #343B44;                                              // background color of the aside section
+@app-aside-border-style:                        0;                                                    // border style for aside section
+@app-aside-menu-title-min-width:                @app-aside-width;                                     // make sure aside narrow sub-items are also showing the proper width
+@app-aside-box-shadow:                          0px 0px 4px -2px rgba(0,0,0,0.75);                    // box-shadow for our aside section
+
+// extramenu
+@app-extramenu-width:                           280px;                                                // width of the extramenu panel
+@app-extramenu-color:                           @gray;                                                // text color for extramenu, might be used for other elements too
+@app-extramenu-background-color:                #fff;                                                 // background color for extramenu
+@app-extramenu-border:                          1px solid #ccc;                                       // border color for extramenu
+
+// footer
+@app-footer-border-top:                         1px solid #ccc;                                       // top border style for footer
+@app-footer-bg-color:                           #fff;                                                 // footer background color
+@app-footer-max-height:                         50px;                                                 // footer needs max height for content min padding on bottom side
+
+// transitions
+@app-transition-duration:                       .2s;                                                  // default transition speed
+@app-transition-type:                           ease-in-out;                                          // default transition method
+@app-transition:                                all @app-transition-duration @app-transition-type;    // combined transition effect
+
+// page title
+@app-page-title-font-size:                      34px;                                                 // font size for the h1 page title (only one per page can be used)
+@app-page-title-font-weight:                    700;                                                  // font weight for unique page titles
+@app-page-title-background-color:               #fff;                                                 // background color for page titles
+@app-page-title-border-color:                   darken(#f7f7f7, 10%);                                 // border color for page titles
+@app-page-title-color:                          @app-header-background-color;                         // text color for page titles
+
+// button
+@app-btn-darken-transition-pct:                 12%;                                                  // how dark should transitions go? used on buttons for example
+@app-btn-lighten-transition-pct:                10%;                                                  // how light should transitions go? used on buttons for example
+@app-btn-transition:                            all 200ms ease-in-out;                                // default transition setting for button hovering
+
+// checkbox
+@app-checkbox-radius:                           0;
+
+// new colors
+@app-color-purple:                              #B55FDE;
+@app-color-aqua:                                #73D4B9;
+@app-color-blue:                                #507CFF;
+@app-color-red:                                 #F35644;
+
+// ported from BootKit
+@link-darken-percentage:            10%;
+@link-lighten-percentage:           10%;
+@link-white-percentage:             4%;
+@brand-white:                       #fff;
+@brand-inverse:                     #222;
+@brand-light-gray:                  #dfdfdf;
+@brand-gray:                        #999;
+@brand-very-light-gray:             #f6f6f6;
+@opacity:                           .8;
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+//--> Menu
+// ---------------------------------------------------------------------------------------------------------------------
+// general
+@app-menu-background-color:                 transparent;                                // background color for our menu
+@app-menu-section-title-color:              #fff;                                       // coloring menu section titles
+@app-menu-section-title-bg-color:           #2D333B;                                    // background color for menu section titles
+@app-menu-list-bg-color:                    @brand-primary;                             // ul background color
+
+// link
+@app-menu-link-title-color:                 #fff;                                       // menu titles (top level li a) text color
+@app-menu-link-color:                       @app-link-color;
+@app-menu-link-hover-color:                 #fff;                                       // menu link hover text color
+@app-menu-link-open-color:                  @app-menu-link-hover-color;                 // when a menu link is open give it this color
+@app-menu-link-open-bg-color:               @brand-primary;
+@app-menu-link-open-bg-color-hover:         @brand-primary;
+@app-menu-link-hover-background:            lighten(@app-aside-background-color, 10%);  // hovering over menu links produces this background color
+@app-menu-link-font-size:                   15px;                                       // font size for menu links
+@app-menu-link-caret-font-size:             12px;                                       // caret (the collapse/expand icons) font sizing
+@app-menu-link-title-padding-left:          8px;
+@app-menu-link-item-height:                 40px;                                       // height of individual list li items
+@app-menu-link-icon-color:                  #fff;
+@app-menu-link-icon-color-aside-narrow:     #fff;
+@app-menu-link-icon-font-size:              14px;
+@app-menu-link-icon-width:                  30px;
+@app-menu-link-icon-left:                   8px;
+
+// aside narrow menu styling
+@app-aside-narrow-menu-link-title-color:        @app-menu-link-title-color;
+@app-aside-narrow-menu-link-icon-color:         #fff;
+@app-aside-narrow-menu-link-open-color:         #fff !important;
+@app-aside-narrow-menu-link-open-bg-color:      @app-menu-link-open-bg-color;
+@app-aside-narrow-menu-link-hover-color:        @app-menu-link-hover-color;
+@app-aside-narrow-menu-link-hover-background:   @brand-primary;
+@app-aside-narrow-menu-icon-color-hover:        @app-aside-narrow-menu-link-hover-color;
+@app-aside-narrow-menu-box-shadow:              1px 1px 2px -2px rgba(0,0,0,0.75);                    // minimized menu box shadow for menus that are visible through hovering over menu icon
+@app-aside-narrow-menu-title-box-shadow:        1px 1px 2px -2px rgba(0,0,0,0.75);                    // minimized menu box shadow for menus titles that are made visible through hovering over icon
+@app-aside-narrow-right-menu-box-shadow:        -1px 1px 2px -2px rgba(0,0,0,0.75);                   // same as above but for rtl menu
+
+// SUB: submenu styling for child links
+@app-menu-sub-link-color:                   @brand-primary;
+@app-menu-sub-link-color-hover:             #fff;
+@app-menu-sub-link-color-open:              @app-menu-sub-link-color-hover;
+@app-menu-sub-link-background-open:         @app-menu-sub-background-color-hover;
+@app-menu-sub-height:                       36px;                                       // height of sub menu items
+@app-menu-sub-font-size:                    14px;                                       // and sub menu item font size
+@app-menu-sub-caret-font-size:              10px;                                       // caret font size for sub menu items
+@app-menu-sub-icon-font-size:               @app-menu-link-icon-font-size;
+@app-menu-sub-icon-color:                   #fff;
+@app-menu-sub-icon-color-hover:             @app-menu-sub-link-color-hover;
+@app-menu-sub-icon-width:                   50px;
+@app-menu-sub-icon-left:                    18px;
+@app-menu-sub-background-color:             lighten(@app-aside-background-color, 4%);
+@app-menu-sub-background-color-hover:       darken(@app-menu-sub-background-color, 8%);
+
+// UL: child list wrapper styles
+@app-menu-ul-margins:                       0;                                          // margins on menu uls
+@app-menu-ul-padding:                       0 0 0 3px;                                  // padding on menu uls
+@app-menu-li-a-padding:                     0 38px 0 0;
+
+// CARET
+@app-menu-caret-offset:                     15px;                                       // offset to the left or right for caret icons
+@app-menu-caret-font-family:                "FontAwesome";                              // font family for caret icons
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+//-->Layouts
+// ---------------------------------------------------------------------------------------------------------------------
+// boxed
+@app-boxed-layout-width:                    1170px;                                     // width for boxed layout
+@app-boxed-border:                          1px solid #ccc;                             // border color (left or right) for the boxed content class
+@app-page-boxed-box-shadow:                 0 0 10px #ccc;                               // box shadow for fixed layouts

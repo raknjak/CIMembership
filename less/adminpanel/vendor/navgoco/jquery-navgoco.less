@@ -1,0 +1,158 @@
+// HEAVILY MODIFIED for CIMembership -- doesn't look like the original at all as this plugin has been changed greatly
+
+// turn off list styles
+.menu,
+.menu ul,
+.menu li {
+    list-style: none;
+}
+
+// configure styles for the sidemenu ul
+.menu {
+  padding: 0;
+  margin: 0;
+  background-color: @app-menu-background-color;
+
+  // global ul styles
+  ul {
+    margin: @app-menu-ul-margins;
+    padding: @app-menu-ul-padding;
+    background-color: @app-menu-list-bg-color; //4E5866
+  }
+
+  // global link styles
+  li a { // !!! try to remove this or override specific link settings below !!!
+    font-size: @app-menu-sub-font-size;
+    height: @app-menu-sub-height;
+    line-height: @app-menu-sub-height;
+    overflow: hidden;
+    position: relative;
+    color: @app-menu-link-color;
+    display: block;
+    outline: none;
+    text-decoration: none;
+    transition: @app-transition;
+
+    > .menu-link-title,
+    > .menu-caret {
+      transition: @app-transition;
+      color: @app-menu-link-title-color;
+    }
+
+    // top links inner wrapper
+    .menu-link-title {
+      position: relative;
+      padding-left: @app-menu-link-title-padding-left;
+    }
+
+    &:hover {
+      color: @app-menu-link-hover-color !important;
+      background-color: @app-menu-link-hover-background;
+
+      > .menu-link-title {
+        color: @app-menu-link-hover-color;
+      }
+
+      > .menu-link-icon {
+        color: @app-menu-link-hover-color;
+      }
+
+      // caret hover style (if you change this class name it will have to be changed in JavaScript files (jquery.navgoco.js), too! (use replace all)) --- line 66;
+      > .menu-caret {
+        color: @app-menu-link-hover-color;
+      }
+    }
+
+    .menu-link-icon {
+      color: @app-menu-link-icon-color;
+      font-size: @app-menu-link-icon-font-size;
+      width: @app-menu-link-icon-width;
+      text-align: center;
+      position: relative;
+      left: @app-menu-link-icon-left;
+      transition: @app-transition;
+    }
+
+    .menu-caret { // (if you change this class name it will have to be changed in JavaScript files, too! (use replace all))
+      float: right !important;
+      position: absolute;
+      line-height: @app-menu-link-item-height;
+      font-family: @app-menu-caret-font-family;
+      font-style: normal;
+      font-weight: normal;
+      font-size: @app-menu-link-caret-font-size;
+      right: @app-menu-caret-offset;
+    }
+  }
+
+  //-->overriding global styles starts here
+  // direct li child
+  > li > a {
+    height: @app-menu-link-item-height;
+    line-height: @app-menu-link-item-height;
+    font-size: @app-menu-link-font-size;
+    padding-left: 0;
+
+    // caret (if you change this class name it will have to be changed in JavaScript files, too! (use replace all))
+    .menu-caret {
+      top: 1px;
+      line-height: @app-menu-link-item-height;
+      font-size: @app-menu-link-caret-font-size;
+    }
+  }
+
+  // open link coloring
+  > li.open > a { // using open to make sure styles also work on narrow
+    color: @app-menu-link-open-color;
+    background-color: @app-menu-link-open-bg-color !important;
+
+    &:hover {
+      background-color: @app-menu-link-hover-background;
+    }
+  }
+
+  // 2nd level and lower - submenus
+  > li > ul  li > a {
+    color: @app-menu-sub-link-color;
+    background-color: @app-menu-sub-background-color;
+
+    &:hover {
+      color: @app-menu-sub-link-color-hover;
+      background-color: @app-menu-sub-background-color-hover;
+
+      .menu-link-icon {
+        color: @app-menu-sub-icon-color-hover;
+      }
+    }
+
+    .menu-link-icon {
+      color: @app-menu-sub-icon-color;
+      font-size: @app-menu-sub-icon-font-size;
+      width: @app-menu-sub-icon-width;
+      left: @app-menu-sub-icon-left;
+    }
+  }
+
+  // 2nd level and lower and opened
+  > li > ul  li.open > a {
+    color: @app-menu-sub-link-color-open;
+    background-color: @app-menu-sub-link-background-open;
+
+    .menu-link-icon {
+      color: @app-menu-sub-link-color-open;
+    }
+  }
+}
+
+.menu-section-title {
+  text-transform: uppercase;
+  height: 30px;
+  overflow: hidden;
+  line-height: 33px;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 0 15px;
+  letter-spacing: 1px;
+  color: @app-menu-section-title-color;
+  background-color: @app-menu-section-title-bg-color;
+}

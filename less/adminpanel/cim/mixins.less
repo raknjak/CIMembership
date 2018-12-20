@@ -1,0 +1,54 @@
+// BUTTONS
+// new navbar button mixin
+.button-navbar(@color; @background) {
+  color: @color;
+  background-color: @background;
+  border-color: lighten(@background, 4%);
+
+  &:focus,
+  &.focus {
+    color: @color;
+    background-color: @background;
+    border-color: lighten(@background, 4%);
+    z-index: 2;
+  }
+  &:hover {
+    color: @app-navbar-btn-color-hover;
+    background-color: darken(@background, 10%);
+    border-color: lighten(@background, 8%);
+    z-index: 2;
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    color: @app-navbar-btn-color-hover;
+    background-color: darken(@background, 10%);
+    border-color: lighten(@background, 8%);
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: @app-navbar-btn-color-hover;
+      background-color: darken(@background, 17%);
+      border-color: lighten(@background, 10%);
+    }
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: @background;
+      border-color: @background;
+    }
+  }
+}

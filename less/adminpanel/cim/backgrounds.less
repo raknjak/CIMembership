@@ -1,0 +1,216 @@
+.bk-bg-variant(@bg-color; @link-darken-pct: @link-darken-percentage; @link-lighten-pct: @link-lighten-percentage;) {
+
+  background-color: @bg-color !important;
+
+  &.bg-darken {
+    a:not(.btn)&:hover {
+      background-color: darken(@bg-color, @link-darken-pct) !important;
+      text-decoration: none;
+    }
+  }
+
+  &.bg-lighten {
+    a:not(.btn)&:hover {
+      background-color: lighten(@bg-color, @link-lighten-pct) !important;
+      text-decoration: none;
+    }
+  }
+}
+
+//-> Background colors
+//> handles links, hover effects
+.bg-primary {
+  .bk-bg-variant(@brand-primary);
+  &-darker {
+    background-color: darken(@brand-primary, @link-darken-percentage);
+  }
+  &-lighter {
+    background-color: lighten(@brand-primary, @link-lighten-percentage);
+  }
+}
+
+.bg-success {
+  .bk-bg-variant(@brand-success);
+  &-darker {
+    background-color: darken(@brand-success, @link-darken-percentage);
+  }
+  &-lighter {
+    background-color: lighten(@brand-success, @link-lighten-percentage);
+  }
+}
+
+.bg-info {
+  .bk-bg-variant(@brand-info);
+  &-darker {
+    background-color: darken(@brand-info, @link-darken-percentage);
+  }
+  &-lighter {
+    background-color: lighten(@brand-info, @link-lighten-percentage);
+  }
+}
+
+.bg-warning {
+  .bk-bg-variant(@brand-warning);
+  &-darker {
+    background-color: darken(@brand-warning, @link-darken-percentage);
+  }
+  &-lighter {
+    background-color: lighten(@brand-warning, @link-lighten-percentage);
+  }
+}
+
+.bg-danger {
+  .bk-bg-variant(@brand-danger);
+  &-darker {
+    background-color: darken(@brand-danger, @link-darken-percentage);
+  }
+  &-lighter {
+    background-color: lighten(@brand-danger, @link-lighten-percentage);
+  }
+}
+
+.bg-inverse {
+  .bk-bg-variant(@brand-inverse);
+  &-darker {
+    background-color: darken(@brand-inverse, @link-darken-percentage);
+  }
+  &-lighter {
+    background-color: lighten(@brand-inverse, @link-lighten-percentage);
+  }
+}
+
+.bg-white {
+  .bk-bg-variant(@brand-white; @link-white-percentage; @link-white-percentage);
+  &-darker {
+    background-color: darken(@brand-white, @link-darken-percentage);
+  }
+}
+
+.bg-very-light-gray {
+  .bk-bg-variant(@brand-very-light-gray);
+  &-darker {
+    background-color: darken(@brand-very-light-gray, @link-darken-percentage);
+  }
+}
+
+.bg-light-gray {
+  .bk-bg-variant(@brand-light-gray);
+  &-darker {
+    background-color: darken(@brand-light-gray, @link-darken-percentage);
+  }
+  &-lighter {
+    background-color: lighten(@brand-light-gray, @link-lighten-percentage);
+  }
+}
+
+.bg-gray {
+  .bk-bg-variant(@brand-gray);
+  &-darker {
+    background-color: darken(@brand-gray, @link-darken-percentage);
+  }
+  &-lighter {
+    background-color: lighten(@brand-gray, @link-lighten-percentage);
+  }
+}
+
+
+// set transition on backgrounds for child elements of
+a .bk-bg-lighten,
+a .bk-bg-darken {
+  transition: background @app-transition;
+}
+
+
+//-> Background colors -----------------------------------------------------------------------------------------------
+// coloring backgrounds for child elements when hovering over link
+a:hover {
+  .bg-primary {
+    &.bg-darken {
+      background-color: darken(@brand-primary, @link-darken-percentage) !important;
+    }
+    &.bg-lighten {
+      background-color: lighten(@brand-primary, @link-lighten-percentage) !important;
+    }
+  }
+
+  .bg-success {
+    &.bg-darken {
+      background-color: darken(@brand-success, @link-darken-percentage) !important;
+    }
+    &.bg-lighten {
+      background-color: lighten(@brand-success, @link-lighten-percentage) !important;
+    }
+  }
+
+  .bg-info {
+    &.bg-darken {
+      background-color: darken(@brand-info, @link-darken-percentage) !important;
+    }
+    &.bg-lighten {
+      background-color: lighten(@brand-info, @link-lighten-percentage) !important;
+    }
+  }
+
+  .bg-warning {
+    &.bg-darken {
+      background-color: darken(@brand-warning, @link-darken-percentage) !important;
+    }
+    &.bg-lighten {
+      background-color: lighten(@brand-warning, @link-lighten-percentage) !important;
+    }
+  }
+
+  .bg-danger {
+    &.bg-darken {
+      background-color: darken(@brand-danger, @link-darken-percentage) !important;
+    }
+    &.bg-lighten {
+      background-color: lighten(@brand-danger, @link-lighten-percentage) !important;
+    }
+  }
+
+  .bg-inverse {
+    &.bg-darken {
+      background-color: darken(@brand-inverse, @link-darken-percentage) !important;
+    }
+    &.bg-lighten {
+      background-color: lighten(@brand-inverse, @link-lighten-percentage) !important;
+    }
+  }
+
+  .bg-white {
+    &.bg-darken {
+      background-color: darken(@brand-white, @link-darken-percentage) !important;
+    }
+    &.bg-lighten {
+      background-color: lighten(@brand-white, @link-lighten-percentage) !important;
+    }
+  }
+
+  .bg-very-light-gray {
+    &.bg-darken {
+      background-color: darken(@brand-very-light-gray, @link-darken-percentage) !important;
+    }
+    &.bg-lighten {
+      background-color: lighten(@brand-very-light-gray, @link-lighten-percentage) !important;
+    }
+  }
+
+  .bg-light-gray {
+    &.bg-darken {
+      background-color: darken(@brand-light-gray, @link-darken-percentage) !important;
+    }
+    &.bg-lighten {
+      background-color: lighten(@brand-light-gray, @link-lighten-percentage) !important;
+    }
+  }
+
+  .bg-gray {
+    &.bg-darken {
+      background-color: darken(@brand-gray, @link-darken-percentage) !important;
+    }
+    &.bg-lighten {
+      background-color: lighten(@brand-gray, @link-lighten-percentage) !important;
+    }
+  }
+}

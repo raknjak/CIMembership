@@ -1,0 +1,956 @@
+// core.less
+// file description: CIMembership LESS core file: this file is loaded in bootstrap.less and loads/sets everything else.
+// ---------------------------------------------------------------------------------------------------------------------
+// --> IMPORTS
+// ---------------------------------------------------------------------------------------------------------------------
+
+// import style params
+@import "color-scheme-pink";
+
+// Add vendor code
+@import "vendor";
+
+// import tools
+@import "alignment";
+@import "backgrounds";
+@import "borders";
+@import "card";
+@import "custom-checkbox";
+@import "foreground";
+@import "hr";
+@import "icons";
+@import "margins";
+@import "misc";
+@import "opacity";
+@import "padding";
+@import "radius";
+@import "social";
+
+// import custom mixins
+@import "mixins";
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> First blood
+html, body {
+  width: 100%;
+  height: 100%;
+  min-width: @app-min-width;
+}
+
+body {
+  background-color: @app-background-color;
+  background: @app-body-background;
+  overflow-x: hidden;
+  visibility: hidden;
+}
+
+header {
+  background-color: @app-header-background-color;
+}
+
+a {
+  color: @app-menu-link-color;
+  transition: @app-transition;
+
+  &:focus {
+    color: @app-link-color;
+    text-decoration: none;
+  }
+
+  &:hover { // must be below focus or it doesn't work
+    color: darken(@app-menu-link-color, 20%);
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    color: @brand-primary;
+  }
+}
+
+button {
+  transition: @app-transition;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Project wrapper (if you change this class name it will have to be changed in JavaScript files, too! (use replace all))
+.wrap {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Header
+.header {
+  z-index: 1100;
+  height: @app-header-height;
+  box-shadow: @app-header-box-shadow;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Fixed header
+.header-fixed {
+  padding-top: @app-header-height;
+
+  // header settings for fixed header
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  .aside {
+    position: fixed;
+    overflow-y: auto;
+  }
+
+  &.aside-narrow {
+    .aside {
+      position: absolute;
+    }
+  }
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Navbar
+// navbar generic
+.navbar {
+  margin: 0;
+  border-width: 0;
+  border-radius: 0;
+  //max-height: @app-header-height;
+
+  .nav > li > a {
+    color: @app-navbar-link-color;
+    background-color: @app-navbar-link-background-color;
+    border-left: 1px solid @app-navbar-link-border-color;
+    border-right: 1px solid @app-navbar-link-border-color;
+    z-index: 1;
+  }
+
+  .nav > li + li {
+    margin-left: -1px;
+  }
+
+  .nav > li > a:hover,
+  .nav > li > a:focus {
+    color: @app-navbar-color-hover;
+    background-color: @app-navbar-background-color;
+    border-color: @app-navbar-border-color;
+    z-index: 2;
+  }
+}
+
+// title top left in header
+.navbar-header {
+  float: left;
+  width: @app-aside-width;
+}
+
+@media (max-width: @screen-xs) {
+  .navbar-header {
+    width: auto;
+  }
+}
+
+// brand
+.navbar-brand {
+  display: block;
+  font-size: 22px;
+  float: none;
+  height: auto;
+  padding: 0 15px;
+  line-height: @app-header-height + 2; // fnie-tune the navbar brand here
+  color: @app-navbar-brand-color;
+
+  &:hover { // override default link hover color to #fff
+    color: @app-navbar-brand-color-hover;
+  }
+
+  > i { // icon which is found in the navbar-brand section inside navbars
+    position: relative;
+    top: 14px;
+  }
+}
+
+.navbar-brand-logo {
+  width: 42px;
+  height: 43px;
+  float: left;
+  margin-top: 3px;
+}
+
+.navbar-brand-title {
+  height: 44px;
+  float: left;
+  font-weight: 700;
+
+  @media (max-width: @screen-xs-min) {
+    display: none;
+  }
+}
+
+.navbar-brand-title-small {
+  font-size: 16px;
+  font-weight: 300;
+  position: relative;
+  top: -3px;
+}
+
+// navbar buttons
+.navbar-btn {
+  position: relative;
+  float: left;
+  margin: 0;
+  height: @app-header-height;
+  min-width: 44px;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0;
+  line-height: 2.9;
+  z-index: 1;
+
+  + .navbar-btn {
+    margin-left: -1px;
+  }
+
+  .button-navbar(@app-navbar-btn-color; @app-navbar-btn-background-color);
+}
+
+.navbar-nav {
+  &.navbar-search {
+    width: 200px;
+  }
+
+  &.navbar-form {
+    margin-top: 8px;
+  }
+
+  .form-control {
+    float: left;
+    border-radius: 0;
+    border: 1px solid @app-navbar-form-control-bg;
+    background-color: @app-navbar-form-control-bg;
+    box-shadow: none; // still set explicitly suppose we turn on box shadow in form-control-focus
+    color: #fff;
+  }
+}
+
+.thumbnail-wrapper,
+.thumbnail-wrapper-navbar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  //display: inline-block !important;
+}
+
+.thumbnail-wrapper-navbar {
+  position: relative;
+  top: -5px;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Aside
+.aside {
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  transition: @app-transition;
+  z-index: 1090;
+  overflow: hidden;
+  background-color: @app-aside-background-color;
+  border-right: @app-aside-border-style;
+  width: @app-aside-width;
+  box-shadow: @app-aside-box-shadow;
+}
+
+// navbar collapse aside offset
+.navbar-collapse,
+.content,
+.footer {
+  margin-left: @app-aside-width;
+  min-width: 300px; // prevents the mobile view from getting squeezed when opening the aside menu - now it seems to slide behind the right edge of the browser
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Content
+.content {
+  transition: @app-transition;
+  //z-index: 1080;
+  position: relative;
+  padding: 20px;
+  padding-bottom: @app-footer-max-height + 15; // needed to make sure the content does not overlay the footer
+
+  &.content-main {
+    margin-left: 0;
+  }
+}
+
+.content:before,
+.content:after {
+  display: table;
+  content: " ";
+}
+
+.content:after {
+  clear: both;
+}
+
+// page title styling
+.page-title {
+  > h2 {
+    font-size: @app-page-title-font-size;
+    font-weight: @app-page-title-font-weight;
+    color: @app-page-title-color;
+    padding-top: 20px;
+    margin: 0;
+  }
+  z-index: 1040;
+  left: @app-aside-width;
+  right: 0;
+  margin-top: -20px;
+  margin-bottom: 0;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding: 0 20px;
+  color: @app-page-title-color;
+  background-color: @app-page-title-background-color;
+  border-bottom: 3px solid @app-page-title-border-color;
+  transition: @app-transition;
+}
+
+// pushes down the c
+.page-title-after {
+  margin-top: 20px;
+}
+
+.page-title-fixed {
+  .page-title {
+    position: fixed;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .page-title-after {
+    margin-top: 80px;
+  }
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Footer
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1090;
+  transition: @app-transition;
+  border-top: @app-footer-border-top;
+  background-color: @app-footer-bg-color;
+  padding: 10px;
+  max-height: @app-footer-max-height;
+  overflow: hidden;
+
+  &.footer-main {
+    margin-left: 0;
+    position: fixed;
+  }
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Aside narrow state (if you change this class name it will have to be changed in JavaScript files, too! (use replace all))
+// when the sidemenu is in the narrow state
+.aside-narrow {
+  .aside {
+    width: @app-aside-width-narrow;
+    overflow: visible;
+  }
+
+  // reduce margins
+  .navbar-collapse {
+    margin-left: @app-aside-width-narrow;
+  }
+
+  // menu
+  .menu {
+    padding: 0;
+
+    li a .menu-link-icon {
+      left: 5px;
+      width: 26px;
+    }
+
+    li a {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    > li { // prepare submenu containers for positioning
+      position: relative;
+      display: block;
+
+      > a {
+        position: static;
+        height: @app-menu-link-item-height + 10;
+        line-height: @app-menu-link-item-height + 10;
+
+        &:hover {
+          background-color: @app-aside-narrow-menu-link-open-bg-color;
+
+          .menu-link-icon {
+            color: @app-aside-narrow-menu-icon-color-hover;
+          }
+        }
+
+        > .menu-link-icon {
+          color: @app-aside-narrow-menu-link-icon-color;
+          width: @app-aside-width-narrow;
+          font-size: 18px;
+          line-height: @app-menu-link-item-height + 10;
+          left: 0;
+        }
+
+        .menu-caret { // (if you change this class name it will have to be changed in JavaScript files, too! (use replace all))
+          display: none;
+        }
+      }
+
+      > ul { // change position of submenus and override styles
+        position: absolute;
+        left: 100%;
+        top: @app-menu-link-item-height + 10;
+        min-width: @app-aside-menu-title-min-width;
+        background-color: @app-aside-background-color;
+        z-index: 1090;
+        border-top: 0;
+        padding-left: 0;
+        box-shadow: @app-aside-narrow-menu-box-shadow;
+
+        // make sure positional wrappers are set correctly for being parent of absolute elements
+        li, > li > a {
+          position: relative;
+          z-index: 1090;
+        }
+      }
+    }
+
+    // open link coloring
+    > li.open > a { // using open to make sure styles also work on narrow
+      color: @app-aside-narrow-menu-link-hover-color;
+      background-color: @app-aside-narrow-menu-link-hover-background !important;
+    }
+
+    > li > ul  li > a {
+      &:hover {
+        color: @app-aside-narrow-menu-link-open-color;
+      }
+    }
+
+    > li > ul  li.open > a {
+      color: @app-aside-narrow-menu-link-open-color !important;
+
+      > .menu-link-title {
+        background-color: @app-aside-narrow-menu-link-open-bg-color;
+      }
+    }
+
+    // overriding title link styling
+    .menu-link-title {
+      position: absolute;
+      left: 100%;
+      top: 0;
+      z-index: 1090;
+      display: none;
+      font-weight: 700;
+      transition: @app-transition;
+      background-color: @app-aside-narrow-menu-link-open-bg-color;
+      color: @app-aside-narrow-menu-link-title-color;
+      padding-left: 16px;
+      box-shadow: @app-aside-narrow-menu-title-box-shadow;
+    }
+
+    // show menu link title on hover, and style active menu title links
+    > li:hover > a > .menu-link-title {
+      background-color: @app-aside-narrow-menu-link-open-bg-color;
+      display: block !important;
+      min-width: @app-aside-menu-title-min-width;
+    }
+
+    // hover adjustments
+    > li:hover > a {
+      // show ul when hovering over anchor
+      & + ul {
+        display: block !important;
+      }
+    }
+  }
+
+  // reduce content and footer margins
+  .content,
+  .footer {
+    margin-left: @app-aside-width-narrow;
+  }
+
+  // sometimes we just need to hide stuff here and there
+  .hidden-folded {
+    display: none !important;
+  }
+
+  .page-title {
+    left: @app-aside-width-narrow;
+  }
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Hidden state (if you change this class name it will have to be changed in JavaScript files, too!)
+.aside-hidden {
+  .aside {
+    width: 0;
+    border-right: 0;
+
+    .menu {
+      transition: @app-transition;
+      .opacity(0);
+    }
+
+    .extra-content {
+      display: none;
+      visibility: hidden;
+      transition: @app-transition;
+    }
+  }
+
+  // reset margins when hidden
+  .content {
+    margin-left: 0;
+  }
+
+  .footer {
+    margin-left: 0;
+  }
+
+  .page-title {
+    left: 0;
+  }
+}
+
+.extramenu {
+  position: fixed;
+  width: @app-extramenu-width;
+  top: @app-header-height;
+  bottom: 50px;
+  margin-bottom: -50px;
+  padding-bottom: 50px;
+  height: 100%;
+  z-index: 1085;
+  transition: @app-transition;
+  background-color: @app-extramenu-background-color;
+  border-left: @app-extramenu-border;
+  color: @app-extramenu-color;
+
+  a {
+    color: darken(@app-extramenu-color, 5%);
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &.right {
+    right: -@app-extramenu-width;
+    &.shown {
+      right: 0;
+    }
+  }
+
+  &.left {
+    left: -@app-extramenu-width;
+    &.shown {
+      left: 0;
+    }
+  }
+
+
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Boxed layout using .page-boxed on .wrap
+.page-boxed {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0;
+  padding-right: 0;
+
+  &.wrap {
+    background-color: #FAFAFB;
+    box-shadow: @app-page-boxed-box-shadow;
+  }
+
+  .aside {
+    position: absolute;
+  }
+
+  &.aside-right .page-title {
+    right: @app-aside-width;
+    left: 0;
+    text-align: right;
+  }
+
+  &.aside-right.aside-narrow .page-title {
+    right: @app-aside-width-narrow;
+  }
+
+  &.aside-right.aside-hidden .page-title {
+    right: 0;
+  }
+
+  .extramenu {
+    position: absolute;
+    height: auto;
+    width: 0;
+    right: 0;
+
+    &.right {
+      right: 0;
+      &.shown {
+        width: @app-extramenu-width !important;
+        //right: 0 !important;
+      }
+    }
+
+    &.left {
+      left: 0;
+      &.shown {
+        width: @app-extramenu-width !important;
+      }
+    }
+
+  }
+}
+
+@media (min-width: 768px) {
+  .page-boxed,
+  .page-boxed .header {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .page-boxed,
+  .page-boxed .header {
+    width: 970px;
+  }
+}
+
+@media (min-width: @screen-lg) { // >= 1200px
+  .page-boxed,
+  .page-boxed .header {
+    width: @app-boxed-layout-width;
+  }
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Aside on the right
+.aside-right {
+
+  .aside {
+    right: 0;
+  }
+
+  .page-title {
+    text-align: right;
+    left: 0;
+    right: @app-aside-width;
+  }
+
+  // navbar collapse aside offset
+  .navbar-collapse {
+    margin-left: 0;
+  }
+
+  .navbar-nav-member {
+    margin-left: -1px;
+  }
+
+  // narrow aside on the right
+  &.aside-narrow {
+
+    .menu {
+      >li {
+        > ul {
+          position: absolute;
+          left: -@app-aside-menu-title-min-width;
+          right: 100%;
+          box-shadow: @app-aside-narrow-right-menu-box-shadow;
+
+          // make sure positional wrappers are set correctly for being parent of absolute elements
+          li, > li > a {
+            position: relative;
+            z-index: 1090;
+          }
+        }
+      }
+
+      // overriding title link styling
+      .menu-link-title {
+        position: absolute;
+        left: -@app-aside-menu-title-min-width;
+        right: 100%;
+        box-shadow: @app-aside-narrow-right-menu-box-shadow;
+      }
+    }
+
+    .content,
+    .footer {
+      margin-right: @app-aside-width-narrow;
+    }
+
+    .page-title {
+      right: @app-aside-width-narrow;
+    }
+  }
+
+  .extramenu {
+    border-left: 0;
+    border-right: @app-extramenu-border;
+  }
+
+  // hidden menu for right aside
+  &.aside-hidden {
+
+    .content,
+    .footer {
+      margin-right: 0;
+    }
+
+    .page-title {
+      right: 0;
+    }
+  }
+
+  .content,
+  .footer {
+    margin-left: 0;
+    margin-right: @app-aside-width;
+  }
+
+  // fixing RTL buttons border overlay with reverse margins
+  .navbar-btn {
+    + .navbar-btn {
+
+      &.pull-right {
+        margin-right: -1px;
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// --> Fileinput
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  transition: @app-transition;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+.profile-img {
+  max-width: 200px;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+//--> Generic classes
+// disable transitions with this class and jQuery
+.notransition * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
+.dropdown-menu-300 {
+  min-width: 300px;
+}
+
+.dropdown-menu-member {
+  width: 180px;
+  > a > i {
+    width: 30px;
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+  }
+}
+
+.bootbox.modal {
+  z-index: 2050 !important;
+  > .modal-dialog {
+    z-index: 2050 !important;
+  }
+}
+
+.modal-backdrop {
+  z-index: 2049 !important;
+}
+
+.loader {
+  display: none;
+}
+
+#extramenu-content {
+  width: 280px;
+  overflow: hidden;
+}
+
+.slimScrollBar{
+  border-radius: 0 !important;
+}
+
+.table-list-members {
+  tr > td {
+    vertical-align: middle !important;
+  }
+}
+
+.list-members-image {
+  height: 24px;
+  padding-right: 10px;
+}
+
+.listicon {
+  font-size: 18px;
+}
+
+#social_login_wrapper {
+  display: table;
+  margin: 0 auto;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// PARSLEY
+input.parsley-success,
+select.parsley-success,
+textarea.parsley-success {
+  color: #468847;
+  background-color: #DFF0D8;
+  border: 1px solid #D6E9C6;
+}
+
+input.parsley-error,
+select.parsley-error,
+textarea.parsley-error {
+  background-color: lighten(@brand-primary, 40%);
+  border: 1px solid #EED3D7;
+}
+
+.parsley-errors-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-size: 0.9em;
+  line-height: 0.9em;
+  opacity: 0;
+  color: #fff !important;
+
+  transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+}
+
+.parsley-errors-list.filled {
+  opacity: 1;
+  padding: 10px;
+  background-color: @state-danger-bg;
+}
+
+.parsley-errors-list > li {
+  line-height: 1.5;
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// fix recaptcha size on mobile
+@media screen and (max-width: @screen-xs) {
+  #rc-imageselect, .g-recaptcha {transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;}
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// navbar right userdata and menu
+.nav-username {
+  //display: none !important;
+  color: #fff;
+  line-height: 50px;
+  padding-right: 15px
+}
+
+.navbar-collapse-custom {
+  display: block !important;
+  height: auto !important;
+  padding-bottom: 0;
+  overflow: visible !important;
+  border-top: 0;
+
+  > .nav > li {
+    float: left;
+  }
+}
+
+.navbar-nav-member {
+
+  > li > a {
+    padding: 10px;
+    line-height: @line-height-computed;
+  }
+
+  @media (max-width: @grid-float-breakpoint-max) {
+    // Dropdowns get custom display when collapsed
+    .open .dropdown-menu {
+      position: absolute;
+    }
+  }
+
+  .dropdown-toggle {
+    height: @app-header-height;
+  }
+
+  // Uncollapse the nav
+  float: left;
+  margin: 0;
+
+  > li {
+    float: left;
+    > a {
+      padding-top:    @navbar-padding-vertical;
+      padding-bottom: @navbar-padding-vertical;
+    }
+  }
+}
