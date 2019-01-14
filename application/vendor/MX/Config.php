@@ -40,7 +40,13 @@ class MX_Config extends CI_Config
 		if (in_array($file, $this->is_loaded, TRUE)) return $this->item($file);
 
 		$_module OR $_module = CI::$APP->router->fetch_module();
-		list($path, $file) = Modules::find($file, $_module, 'config/');
+		// https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc/pull-requests/29/configphp-optimisation/diff
+        if (version_compare(phpversion(), '7.1', '<')) {
+            // php version isn't high enough
+            list($path, $file) = Modules::find($file, $_module, 'config/');
+        }else{
+            [$path, $file] = Modules::find($file, $_module, 'config/');
+        }
 		
 		if ($path === FALSE)
 		{

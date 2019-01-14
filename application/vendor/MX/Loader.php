@@ -54,7 +54,7 @@ class MX_Loader extends CI_Loader
 			/* references to ci loader variables */
 			foreach (get_class_vars('CI_Loader') as $var => $val)
 			{
-				if ($var != '_ci_ob_level')
+				if ($var !== '_ci_ob_level')
 				{
 					$this->$var =& CI::$APP->load->$var;
 				}
@@ -118,7 +118,12 @@ class MX_Loader extends CI_Loader
 
 		if (isset($this->_ci_helpers[$helper]))	return;
 
-		list($path, $_helper) = Modules::find($helper.'_helper', $this->_module, 'helpers/');
+        if (version_compare(phpversion(), '7.1', '<')) {
+            // php version isn't high enough
+            list($path, $_helper) = Modules::find($helper.'_helper', $this->_module, 'helpers/');
+        }else{
+            [$path, $_helper] = Modules::find($helper.'_helper', $this->_module, 'helpers/');
+        }
 
 		if ($path === FALSE) return parent::helper($helper);
 
@@ -159,12 +164,22 @@ class MX_Loader extends CI_Loader
 
 		($_alias = strtolower($object_name)) OR $_alias = $class;
 
-		list($path, $_library) = Modules::find($library, $this->_module, 'libraries/');
+        if (version_compare(phpversion(), '7.1', '<')) {
+            // php version isn't high enough
+            list($path, $_library) = Modules::find($library, $this->_module, 'libraries/');
+        }else{
+            [$path, $_library] = Modules::find($library, $this->_module, 'libraries/');
+        }
 
 		/* load library config file as params */
 		if ($params == NULL)
 		{
-			list($path2, $file) = Modules::find($_alias, $this->_module, 'config/');
+            if (version_compare(phpversion(), '7.1', '<')) {
+                // php version isn't high enough
+                list($path2, $file) = Modules::find($_alias, $this->_module, 'config/');
+            }else{
+                [$path2, $file] = Modules::find($_alias, $this->_module, 'config/');
+            }
 			($path2) && $params = Modules::load_file($file, $path2, 'config');
 		}
 
@@ -205,7 +220,12 @@ class MX_Loader extends CI_Loader
 			return $this;
 
 		/* check module */
-		list($path, $_model) = Modules::find(strtolower($model), $this->_module, 'models/');
+        if (version_compare(phpversion(), '7.1', '<')) {
+            // php version isn't high enough
+            list($path, $_model) = Modules::find(strtolower($model), $this->_module, 'models/');
+        }else{
+            [$path, $_model] = Modules::find(strtolower($model), $this->_module, 'models/');
+        }
 
 		if ($path == FALSE)
 		{
@@ -267,7 +287,12 @@ class MX_Loader extends CI_Loader
 		if (isset($this->_ci_plugins[$plugin]))
 			return $this;
 
-		list($path, $_plugin) = Modules::find($plugin.'_pi', $this->_module, 'plugins/');
+        if (version_compare(phpversion(), '7.1', '<')) {
+            // php version isn't high enough
+            list($path, $_plugin) = Modules::find($plugin.'_pi', $this->_module, 'plugins/');
+        }else{
+            [$path, $_plugin] = Modules::find($plugin.'_pi', $this->_module, 'plugins/');
+        }
 
 		if ($path === FALSE && ! is_file($_plugin = APPPATH.'plugins/'.$_plugin.EXT))
 		{
@@ -289,7 +314,12 @@ class MX_Loader extends CI_Loader
 	/** Load a module view **/
 	public function view($view, $vars = array(), $return = FALSE)
 	{
-		list($path, $_view) = Modules::find($view, $this->_module, 'views/');
+        if (version_compare(phpversion(), '7.1', '<')) {
+            // php version isn't high enough
+            list($path, $_view) = Modules::find($view, $this->_module, 'views/');
+        }else{
+            [$path, $_view] = Modules::find($view, $this->_module, 'views/');
+        }
 
 		if ($path != FALSE)
 		{
@@ -378,7 +408,12 @@ class MX_Loader extends CI_Loader
 
 		if ($this->_module)
 		{
-			list($path, $file) = Modules::find('constants', $this->_module, 'config/');
+            if (version_compare(phpversion(), '7.1', '<')) {
+                // php version isn't high enough
+                list($path, $file) = Modules::find('constants', $this->_module, 'config/');
+            }else{
+                [$path, $file] = Modules::find('constants', $this->_module, 'config/');
+            }
 
 			/* module constants file */
 			if ($path != FALSE)
@@ -386,7 +421,13 @@ class MX_Loader extends CI_Loader
 				include_once $path.$file.EXT;
 			}
 
-			list($path, $file) = Modules::find('autoload', $this->_module, 'config/');
+
+            if (version_compare(phpversion(), '7.1', '<')) {
+                // php version isn't high enough
+                list($path, $file) = Modules::find('autoload', $this->_module, 'config/');
+            }else{
+                [$path, $file] = Modules::find('autoload', $this->_module, 'config/');
+            }
 
 			/* module autoload file */
 			if ($path != FALSE)

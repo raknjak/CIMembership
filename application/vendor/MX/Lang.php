@@ -44,13 +44,18 @@ class MX_Lang extends CI_Lang
 		}
 			
 		$deft_lang = CI::$APP->config->item('language');
-		$idiom = ($lang == '') ? $deft_lang : $lang;
+		$idiom = ($lang === '') ? $deft_lang : $lang;
 	
 		if (in_array($langfile.'_lang'.EXT, $this->is_loaded, TRUE))
 			return $this->language;
 
 		$_module OR $_module = CI::$APP->router->fetch_module();
-		list($path, $_langfile) = Modules::find($langfile.'_lang', $_module, 'language/'.$idiom.'/');
+        if (version_compare(phpversion(), '7.1', '<')) {
+            // php version isn't high enough
+            list($path, $_langfile) = Modules::find($langfile.'_lang', $_module, 'language/'.$idiom.'/');
+        }else{
+            [$path, $_langfile] = Modules::find($langfile.'_lang', $_module, 'language/'.$idiom.'/');[$path, $file] = Modules::find($file, $_module, 'config/');
+        }
 
 		if ($path === FALSE) 
 		{

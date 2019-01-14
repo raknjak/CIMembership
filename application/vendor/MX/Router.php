@@ -236,6 +236,7 @@ class MX_Router extends CI_Router
 	public function set_class($class)
 	{
 		$suffix = $this->config->item('controller_suffix');
+        https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc/pull-requests/36/routerphp-edited-online-with-bitbucket/diff
         if( $suffix && strpos($class, $suffix) === FALSE)
 		{
 			$class .= $suffix;

@@ -80,7 +80,24 @@ class Modules
 	/** Load a module controller **/
 	public static function load($module) 
 	{
-		(is_array($module)) ? list($module, $params) = each($module) : $params = NULL;	
+
+        https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc/pull-requests/35/replaced-each-function-as-it-is-deprecated/diff
+        // previously, it was like this, but then each() got deprecated in php7.2
+        // (is_array($module)) ? list($module, $params) = each($module) : $params = NULL;
+        // analysis:
+        // $module gets overwritten by the key returned by each()
+        // also, $module was passed by value -- anything we do here does not affect the original array
+        // so we don't need to emulate each() perfectly, rather we only need to get the key and value
+        // at the current internal pointer position
+
+        if (is_array($module))
+        {
+           // need to get the $params first, because the second call overwrites $module
+           $params = current($module);
+           $module = key($module);
+        }else{
+           $params = NULL;
+        }
 		
 		/* get the requested controller class name */
 		$alias = strtolower(basename($module));
@@ -89,7 +106,12 @@ class Modules
 		if ( ! isset(self::$registry[$alias])) 
 		{
 			/* find the controller */
-			list($class) = CI::$APP->router->locate(explode('/', $module));
+            if (version_compare(phpversion(), '7.1', '<')) {
+                // php version isn't high enough
+                list($class) = CI::$APP->router->locate(explode('/', $module));
+            }else{
+                [$class] = CI::$APP->router->locate(explode('/', $module));
+            }
 	
 			/* controller cannot be located */
 			if (empty($class)) return;
