@@ -8,9 +8,7 @@ class Upload_member_profile_picture
     public function __construct()
     {
         $this->_ci =& get_instance();
-
         $this->_ci->load->library('form_validation');
-
         log_message('debug', 'Upload profile picture class Initialized');
     }
 
@@ -50,7 +48,7 @@ class Upload_member_profile_picture
         $headers = $response[1];
 
         foreach($files as $file){
-            //Remeber to check if the upload was completed
+            //Remember to check if the upload was completed
             if ($file->completed) {
                 $real_path =  $file->getRealPath();
                 // Move file to correct member image directory

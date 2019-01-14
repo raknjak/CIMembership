@@ -306,37 +306,38 @@ var waitForFinalEvent = (function() {
 			});
 		};
 
-        // Parsley generic form
-        $(".js-parsley").each(function(i, obj) {
-          var $form = $(this);
-          if ($form.length) {
-            parsleyFactory( $form, $("." + $form.data('parsley-submit')) );
-          }
-        });
+    // Parsley generic form
+    $(".js-parsley").each(function(i, obj) {
+      var $form = $(this);
+      if ($form.length) {
+        parsleyFactory( $form, $("." + $form.data('parsley-submit')) );
+      }
+    });
 
-        // ---
-        // custom validation rules with AJAX
-        window.Parsley.addAsyncValidator('parsley_is_db_cell_available', function (xhr) {
-          var response = xhr.responseText;
-          var t = this.$element.attr('name');
-          if (response === 'valid') {
-              return true;
-          } else {
-              return false;
-          }
-        }, CONFIG.base_url + 'utils/parsley_custom_validation/parsley_is_db_cell_available');
+    // ---
+    // custom validation rules with AJAX
+    window.Parsley.addAsyncValidator('parsley_is_db_cell_available', function (xhr) {
+      var response = xhr.responseText;
+
+      // todo: cleanup!
+      if (response === 'valid') {
+          return true;
+      } else {
+          return false;
+      }
+    }, CONFIG.base_url + 'utils/parsley_custom_validation/parsley_is_db_cell_available');
 
 
-        // set global CSRF token
-        // -------------------------------------------------------------------------------------------------------------
-        var key = CONFIG.csrf_token_name;
-        var $csrf_token_name = {};
-        $csrf_token_name[key] = CONFIG.csrf_cookie_name;
+    // set global CSRF token
+    // -------------------------------------------------------------------------------------------------------------
+    var key = CONFIG.csrf_token_name;
+    var $csrf_token_name = {};
+    $csrf_token_name[key] = CONFIG.csrf_cookie_name;
 
 		// profile picture upload
 		// -----------------------------------------------------------------------------------------------------------------
     var $fileUpload = $('#fileupload');
-    var acceptFileTypes = /^image\/(jpe?g|png)$/i;
+    var $acceptFileTypes = /^image\/(jpe?g|png)$/i;
 
 
     if ($fileUpload.length) {
@@ -346,17 +347,18 @@ var waitForFinalEvent = (function() {
 				dataType: 'json',
 				disableImageResize: /Android(?!.*Chrome)|Opera/.test(window.navigator.userAgent),
 				maxFileSize: CONFIG.picture_max_upload_size * 1000,
-				acceptFileTypes: acceptFileTypes,
+				acceptFileTypes: $acceptFileTypes,
 				formData:
 					$csrf_token_name,
-                submit: function (e, data) {
-                    data.formData = $csrf_token_name; // refreshing csrf token here works! No need to turn off CSRF refreshing anymore.
-					$('#progress').removeClass('hidden');
-					$('#files').text('');
-				},
+          submit: function (e, data) {
+            data.formData = $csrf_token_name; // refreshing csrf token here works! No need to turn off CSRF refreshing anymore.
+            $('#progress').removeClass('hidden');
+            $('#files').text('');
+          }
+        ,
 				add: function(e, data) {
 					var uploadErrors = [];
-					if(data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
+					if(data.originalFiles[0]['type'].length && !$acceptFileTypes.test(data.originalFiles[0]['type'])) {
 						uploadErrors.push('Not an accepted file type.');
 					}
 					if(data.originalFiles[0]['size'].toString().length > 0 && data.originalFiles[0]['size'] > CONFIG.picture_max_upload_size * 1000) {
