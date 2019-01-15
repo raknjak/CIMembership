@@ -1,4 +1,5 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 // Login
 $lang['login']                          = 'Log in';
 $lang['logout']                         = 'Log out';

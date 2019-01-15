@@ -66,7 +66,7 @@
                        data-parsley-maxlength="254"
                        data-parsley-remote
                        data-parsley-remote-validator="parsley_is_db_cell_available"
-                       data-parsley-remote-message="That email is taken."
+                       data-parsley-remote-message="<?php echo $this->lang->line('form_validation_is_db_cell_available'); ?>"
                        required>
                 <p class="small pd-5">
                     <strong><?php echo $this->lang->line('register_req_email'); ?></strong>
