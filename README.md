@@ -11,3 +11,5 @@ Working towards version 4:
 - CodeIgniter 4
 
 Installation: read the manual https://cimembership.io/manual
+
+Maintained by https://codeworx.be/
